@@ -1,0 +1,10 @@
+name: core
+description: Shared package for RWP3 ride-sharing platform
+version: 1.0.0
+
+environment:
+  sdk: '>=3.2.6 <4.0.0'
+
+dependencies:
+  equatable: ^2.0.5
+  dartz: ^0.10.1

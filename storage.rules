@@ -1,0 +1,88 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isImageFile() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    function isUnder5MB() {
+      return request.resource.size < 5 * 1024 * 1024;
+    }
+
+    function isUnder2MB() {
+      return request.resource.size < 2 * 1024 * 1024;
+    }
+
+    // Profile pictures — users
+    match /profile_pictures/users/{userId}/{fileName} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId) && isImageFile() && isUnder2MB();
+      allow delete: if isOwner(userId);
+    }
+
+    // Profile pictures — drivers
+    match /profile_pictures/drivers/{driverId}/{fileName} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(driverId) && isImageFile() && isUnder2MB();
+      allow delete: if isOwner(driverId);
+    }
+
+    // Driver documents (license, ID, etc.)
+    match /documents/drivers/{driverId}/{fileName} {
+      allow read: if isOwner(driverId) || isAdmin();
+      allow write: if isOwner(driverId) && isImageFile() && isUnder5MB();
+      allow delete: if isOwner(driverId);
+    }
+
+    // Parcel images
+    match /parcels/{parcelId}/{fileName} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && isImageFile() && isUnder5MB();
+      allow delete: if false; // Preserve for records
+    }
+
+    // Banner images (admin only)
+    match /banners/{bannerId}/{fileName} {
+      allow read: if true; // Public — displayed on home screen
+      allow write: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Vehicle type images (admin only)
+    match /vehicles/{vehicleTypeId}/{fileName} {
+      allow read: if true; // Public — displayed in vehicle selection
+      allow write: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Onboarding images (admin only)
+    match /onboarding/{screenId}/{fileName} {
+      allow read: if true; // Public — shown before auth
+      allow write: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Helper: Check if user is admin (requires Firestore lookup via custom claims)
+    // Note: For Storage rules, use Custom Claims set via Cloud Functions:
+    //   admin.auth().setCustomUserClaims(uid, { role: 'admin' })
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.role == 'admin';
+    }
+
+    // Deny everything else
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

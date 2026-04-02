@@ -1,0 +1,38 @@
+# Flutter/Dart
+**/build/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/.pub-cache/
+**/.pub/
+**/pubspec.lock
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+
+# Firebase (never commit real credentials)
+**/firebase_options.dart
+**/firebase_options_*.dart
+**/google-services.json
+**/GoogleService-Info.plist
+
+# Keys & secrets
+*.jks
+*.keystore
+.env
+.env.*
+**/service-account.json
+
+# OS
+Thumbs.db
+*.swp
+*~
+
+# Test
+**/coverage/
