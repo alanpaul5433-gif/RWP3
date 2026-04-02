@@ -64,42 +64,17 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                ListTile(
-                  leading: const Icon(Icons.history),
-                  title: const Text('Ride History'),
-                  onTap: () => Navigator.pop(context),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.account_balance_wallet_outlined),
-                  title: const Text('Wallet'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    context.push('/wallet');
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.local_offer_outlined),
-                  title: const Text('Coupons'),
-                  onTap: () => Navigator.pop(context),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.card_giftcard),
-                  title: const Text('Referral'),
-                  onTap: () => Navigator.pop(context),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.support_agent),
-                  title: const Text('Support'),
-                  onTap: () => Navigator.pop(context),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.person_outlined),
-                  title: const Text('Profile'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    context.push('/profile');
-                  },
-                ),
+                _DrawerItem(Icons.history, 'Ride History', '/ride-history'),
+                _DrawerItem(Icons.account_balance_wallet_outlined, 'Wallet', '/wallet'),
+                _DrawerItem(Icons.local_offer_outlined, 'Coupons', '/coupons'),
+                _DrawerItem(Icons.stars_outlined, 'Loyalty Points', '/loyalty'),
+                _DrawerItem(Icons.card_giftcard, 'Referral', '/referral'),
+                _DrawerItem(Icons.chat_bubble_outline, 'Messages', '/inbox'),
+                _DrawerItem(Icons.notifications_outlined, 'Notifications', '/notifications'),
+                _DrawerItem(Icons.contact_phone_outlined, 'Emergency Contacts', '/emergency-contacts'),
+                _DrawerItem(Icons.support_agent, 'Support', '/support'),
+                _DrawerItem(Icons.person_outlined, 'Profile', '/profile'),
+                _DrawerItem(Icons.settings_outlined, 'Settings', '/settings'),
                 const Divider(),
                 ListTile(
                   leading: Icon(Icons.logout, color: colorScheme.error),
@@ -185,6 +160,25 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _DrawerItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String route;
+  const _DrawerItem(this.icon, this.label, this.route);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(label),
+      onTap: () {
+        Navigator.pop(context);
+        context.push(route);
+      },
     );
   }
 }

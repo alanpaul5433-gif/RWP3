@@ -14,6 +14,7 @@ import '../features/vehicle/presentation/bloc/vehicle_bloc.dart';
 import '../features/vehicle/presentation/widgets/select_vehicle_page.dart';
 import '../features/booking/presentation/bloc/booking_bloc.dart';
 import '../features/booking/presentation/pages/confirm_booking_page.dart';
+import '../features/booking/presentation/pages/ride_history_page.dart';
 import '../features/payment/presentation/bloc/payment_bloc.dart';
 import '../features/tracking/presentation/pages/tracking_page.dart';
 import '../features/wallet/presentation/bloc/wallet_bloc.dart';
@@ -23,10 +24,26 @@ import '../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../features/settings/presentation/pages/settings_page.dart';
 import '../features/settings/presentation/bloc/theme_bloc.dart';
 import '../features/settings/presentation/bloc/locale_bloc.dart';
+import '../features/coupon/presentation/bloc/coupon_bloc.dart';
+import '../features/coupon/presentation/pages/coupon_list_page.dart';
+import '../features/loyalty/presentation/bloc/loyalty_bloc.dart';
+import '../features/loyalty/presentation/pages/loyalty_page.dart';
+import '../features/referral/presentation/bloc/referral_bloc.dart';
+import '../features/referral/presentation/pages/referral_page.dart';
+import '../features/emergency_contacts/presentation/bloc/emergency_contacts_bloc.dart';
+import '../features/emergency_contacts/presentation/pages/emergency_contacts_page.dart';
+import '../features/sos/presentation/bloc/sos_bloc.dart';
+import '../features/sos/presentation/pages/sos_page.dart';
+import '../features/support/presentation/bloc/support_bloc.dart';
+import '../features/support/presentation/pages/support_page.dart';
+import '../features/notification/presentation/bloc/notification_bloc.dart';
+import '../features/notification/presentation/pages/notification_page.dart';
+import '../features/chat/presentation/bloc/chat_bloc.dart';
+import '../features/chat/presentation/pages/chat_page.dart';
+import '../features/chat/presentation/pages/inbox_page.dart';
 import '../injection_container.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
-  // Shared BLoC instances for booking flow (persist across screens)
   LocationBloc? locationBloc;
   VehicleBloc? vehicleBloc;
   BookingBloc? bookingBloc;
@@ -40,161 +57,132 @@ GoRouter createRouter(AuthBloc authBloc) {
       final path = state.matchedLocation;
       final publicRoutes = {'/splash', '/onboarding', '/login', '/signup', '/forgot-password'};
 
-      if (authState is Authenticated && publicRoutes.contains(path)) {
-        return '/home';
-      }
-
-      if (authState is Unauthenticated && !publicRoutes.contains(path)) {
-        return '/login';
-      }
-
+      if (authState is Authenticated && publicRoutes.contains(path)) return '/home';
+      if (authState is Unauthenticated && !publicRoutes.contains(path)) return '/login';
       return null;
     },
     routes: [
-      // Auth routes
-      // Splash
-      GoRoute(
-        path: '/splash',
-        builder: (context, state) => BlocProvider.value(
-          value: sl<AuthBloc>(),
-          child: const SplashPage(),
-        ),
-      ),
+      // ==================== PUBLIC ====================
+      GoRoute(path: '/splash', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const SplashPage())),
+      GoRoute(path: '/onboarding', builder: (context, state) => const OnboardingPage()),
+      GoRoute(path: '/login', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const LoginPage())),
+      GoRoute(path: '/signup', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const SignupPage())),
+      GoRoute(path: '/forgot-password', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const ForgotPasswordPage())),
 
-      // Onboarding
-      GoRoute(
-        path: '/onboarding',
-        builder: (context, state) => const OnboardingPage(),
-      ),
+      // ==================== HOME ====================
+      GoRoute(path: '/home', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const HomePage())),
 
-      // Auth routes
-      GoRoute(
-        path: '/login',
-        builder: (context, state) => BlocProvider.value(
-          value: sl<AuthBloc>(),
-          child: const LoginPage(),
-        ),
-      ),
-      GoRoute(
-        path: '/signup',
-        builder: (context, state) => BlocProvider.value(
-          value: sl<AuthBloc>(),
-          child: const SignupPage(),
-        ),
-      ),
-      GoRoute(
-        path: '/forgot-password',
-        builder: (context, state) => BlocProvider.value(
-          value: sl<AuthBloc>(),
-          child: const ForgotPasswordPage(),
-        ),
-      ),
+      // ==================== PROFILE ====================
+      GoRoute(path: '/profile', builder: (context, state) => MultiBlocProvider(
+        providers: [BlocProvider.value(value: sl<AuthBloc>()), BlocProvider(create: (_) => sl<ProfileBloc>())],
+        child: const EditProfilePage(),
+      )),
 
-      // Home
-      GoRoute(
-        path: '/home',
-        builder: (context, state) => BlocProvider.value(
-          value: sl<AuthBloc>(),
-          child: const HomePage(),
-        ),
-      ),
+      // ==================== BOOKING FLOW ====================
+      GoRoute(path: '/select-location', builder: (context, state) {
+        locationBloc = sl<LocationBloc>(); vehicleBloc = sl<VehicleBloc>();
+        bookingBloc = sl<BookingBloc>(); paymentBloc = sl<PaymentBloc>();
+        return BlocProvider.value(value: locationBloc!, child: const SelectLocationPage());
+      }),
+      GoRoute(path: '/select-vehicle', builder: (context, state) {
+        vehicleBloc!.add(const VehicleTypesRequested());
+        return MultiBlocProvider(
+          providers: [BlocProvider.value(value: locationBloc!), BlocProvider.value(value: vehicleBloc!)],
+          child: const SelectVehiclePage(),
+        );
+      }),
+      GoRoute(path: '/confirm-booking', builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider.value(value: sl<AuthBloc>()), BlocProvider.value(value: locationBloc!),
+          BlocProvider.value(value: bookingBloc!), BlocProvider.value(value: paymentBloc!),
+        ],
+        child: const ConfirmBookingPage(),
+      )),
+      GoRoute(path: '/tracking/:id', builder: (context, state) {
+        final id = state.pathParameters['id']!;
+        return BlocProvider.value(value: bookingBloc!, child: TrackingPage(bookingId: id));
+      }),
 
-      // Profile
-      GoRoute(
-        path: '/profile',
-        builder: (context, state) => MultiBlocProvider(
-          providers: [
-            BlocProvider.value(value: sl<AuthBloc>()),
-            BlocProvider(create: (_) => sl<ProfileBloc>()),
-          ],
-          child: const EditProfilePage(),
-        ),
-      ),
+      // ==================== RIDE HISTORY ====================
+      GoRoute(path: '/ride-history', builder: (context, state) => BlocProvider(
+        create: (_) => sl<BookingBloc>(),
+        child: const RideHistoryPage(),
+      )),
 
-      // Booking flow: Select Location
-      GoRoute(
-        path: '/select-location',
-        builder: (context, state) {
-          locationBloc = sl<LocationBloc>();
-          vehicleBloc = sl<VehicleBloc>();
-          bookingBloc = sl<BookingBloc>();
-          paymentBloc = sl<PaymentBloc>();
-          return BlocProvider.value(
-            value: locationBloc!,
-            child: const SelectLocationPage(),
-          );
-        },
-      ),
+      // ==================== WALLET ====================
+      GoRoute(path: '/wallet', builder: (context, state) => BlocProvider(
+        create: (_) => sl<WalletBloc>()..add(const WalletLoadRequested('mock_user')),
+        child: const WalletPage(),
+      )),
 
-      // Booking flow: Select Vehicle
-      GoRoute(
-        path: '/select-vehicle',
-        builder: (context, state) {
-          vehicleBloc!.add(const VehicleTypesRequested());
-          return MultiBlocProvider(
-            providers: [
-              BlocProvider.value(value: locationBloc!),
-              BlocProvider.value(value: vehicleBloc!),
-            ],
-            child: const SelectVehiclePage(),
-          );
-        },
-      ),
+      // ==================== COUPONS ====================
+      GoRoute(path: '/coupons', builder: (context, state) => BlocProvider(
+        create: (_) => sl<CouponBloc>()..add(const CouponsLoadRequested()),
+        child: const CouponListPage(),
+      )),
 
-      // Booking flow: Confirm & Book
-      GoRoute(
-        path: '/confirm-booking',
-        builder: (context, state) => MultiBlocProvider(
-          providers: [
-            BlocProvider.value(value: sl<AuthBloc>()),
-            BlocProvider.value(value: locationBloc!),
-            BlocProvider.value(value: bookingBloc!),
-            BlocProvider.value(value: paymentBloc!),
-          ],
-          child: const ConfirmBookingPage(),
-        ),
-      ),
+      // ==================== LOYALTY ====================
+      GoRoute(path: '/loyalty', builder: (context, state) => BlocProvider(
+        create: (_) => sl<LoyaltyBloc>()..add(const LoyaltyLoadRequested('mock_user')),
+        child: const LoyaltyPage(),
+      )),
 
-      // Wallet
-      GoRoute(
-        path: '/wallet',
-        builder: (context, state) => BlocProvider(
-          create: (_) => sl<WalletBloc>()..add(const WalletLoadRequested('mock_user')),
-          child: const WalletPage(),
-        ),
-      ),
+      // ==================== REFERRAL ====================
+      GoRoute(path: '/referral', builder: (context, state) => BlocProvider(
+        create: (_) => sl<ReferralBloc>()..add(const ReferralCodeRequested('mock_user')),
+        child: const ReferralPage(),
+      )),
 
-      // Tracking
-      GoRoute(
-        path: '/tracking/:id',
-        builder: (context, state) {
-          final id = state.pathParameters['id']!;
-          return MultiBlocProvider(
-            providers: [
-              BlocProvider.value(value: bookingBloc!),
-            ],
-            child: TrackingPage(bookingId: id),
-          );
-        },
-      ),
+      // ==================== EMERGENCY CONTACTS ====================
+      GoRoute(path: '/emergency-contacts', builder: (context, state) => BlocProvider(
+        create: (_) => sl<EmergencyContactsBloc>()..add(const EmergencyContactsLoadRequested('mock_user')),
+        child: const EmergencyContactsPage(),
+      )),
 
-      // Settings
-      GoRoute(
-        path: '/settings',
-        builder: (context, state) => MultiBlocProvider(
-          providers: [
-            BlocProvider.value(value: sl<AuthBloc>()),
-            BlocProvider.value(value: sl<ThemeBloc>()),
-            BlocProvider.value(value: sl<LocaleBloc>()),
-          ],
-          child: const SettingsPage(),
-        ),
-      ),
+      // ==================== SOS ====================
+      GoRoute(path: '/sos', builder: (context, state) => BlocProvider(
+        create: (_) => sl<SosBloc>()..add(const SosHistoryRequested('mock_user')),
+        child: const SosPage(),
+      )),
+
+      // ==================== SUPPORT ====================
+      GoRoute(path: '/support', builder: (context, state) => BlocProvider(
+        create: (_) => sl<SupportBloc>()..add(const SupportTicketsLoadRequested('mock_user')),
+        child: const SupportPage(),
+      )),
+
+      // ==================== NOTIFICATIONS ====================
+      GoRoute(path: '/notifications', builder: (context, state) => BlocProvider(
+        create: (_) => sl<NotificationBloc>()..add(const NotificationsLoadRequested('mock_user')),
+        child: const NotificationPage(),
+      )),
+
+      // ==================== CHAT ====================
+      GoRoute(path: '/inbox', builder: (context, state) => BlocProvider(
+        create: (_) => sl<ChatBloc>()..add(const ChatInboxRequested('mock_user')),
+        child: const InboxPage(),
+      )),
+      GoRoute(path: '/chat/:userId', builder: (context, state) {
+        final otherUserId = state.pathParameters['userId']!;
+        return BlocProvider(
+          create: (_) => sl<ChatBloc>()..add(ChatStreamStarted(userId: 'mock_user', otherUserId: otherUserId)),
+          child: ChatPage(userId: 'mock_user', otherUserId: otherUserId),
+        );
+      }),
+
+      // ==================== SETTINGS ====================
+      GoRoute(path: '/settings', builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider.value(value: sl<AuthBloc>()),
+          BlocProvider.value(value: sl<ThemeBloc>()),
+          BlocProvider.value(value: sl<LocaleBloc>()),
+        ],
+        child: const SettingsPage(),
+      )),
     ],
   );
 }
 
-/// Converts a Bloc stream into a Listenable for GoRouter refresh.
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream<dynamic> stream) {
     stream.listen((_) => notifyListeners());

@@ -19,6 +19,10 @@ class _AdminShellState extends State<AdminShell> {
     NavigationRailDestination(icon: Icon(Icons.people_outlined), selectedIcon: Icon(Icons.people), label: Text('Customers')),
     NavigationRailDestination(icon: Icon(Icons.drive_eta_outlined), selectedIcon: Icon(Icons.drive_eta), label: Text('Drivers')),
     NavigationRailDestination(icon: Icon(Icons.receipt_long_outlined), selectedIcon: Icon(Icons.receipt_long), label: Text('Bookings')),
+    NavigationRailDestination(icon: Icon(Icons.location_on_outlined), selectedIcon: Icon(Icons.location_on), label: Text('Zones')),
+    NavigationRailDestination(icon: Icon(Icons.image_outlined), selectedIcon: Icon(Icons.image), label: Text('Banners')),
+    NavigationRailDestination(icon: Icon(Icons.card_membership_outlined), selectedIcon: Icon(Icons.card_membership), label: Text('Plans')),
+    NavigationRailDestination(icon: Icon(Icons.admin_panel_settings_outlined), selectedIcon: Icon(Icons.admin_panel_settings), label: Text('Roles')),
     NavigationRailDestination(icon: Icon(Icons.settings_outlined), selectedIcon: Icon(Icons.settings), label: Text('Settings')),
   ];
 
@@ -27,6 +31,10 @@ class _AdminShellState extends State<AdminShell> {
     '/customers',
     '/drivers',
     '/bookings',
+    '/zones',
+    '/banners',
+    '/subscriptions',
+    '/roles',
     '/settings',
   ];
 
@@ -35,59 +43,39 @@ class _AdminShellState extends State<AdminShell> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    // Sync selected index with current route
     final location = GoRouterState.of(context).matchedLocation;
     for (int i = 0; i < _routes.length; i++) {
-      if (location.startsWith(_routes[i])) {
-        _selectedIndex = i;
-        break;
-      }
+      if (location.startsWith(_routes[i])) { _selectedIndex = i; break; }
     }
 
     return Scaffold(
-      body: Row(
-        children: [
-          NavigationRail(
-            extended: MediaQuery.of(context).size.width > 1200,
-            selectedIndex: _selectedIndex,
-            destinations: _destinations,
-            onDestinationSelected: (index) {
-              setState(() => _selectedIndex = index);
-              context.go(_routes[index]);
-            },
-            leading: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Column(
-                children: [
-                  Icon(Icons.local_taxi, color: colorScheme.primary, size: 32),
-                  const SizedBox(height: 4),
-                  Text('RWP3', style: theme.textTheme.labelSmall?.copyWith(
-                    color: colorScheme.primary,
-                    fontWeight: FontWeight.bold,
-                  )),
-                ],
-              ),
-            ),
-            trailing: Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: IconButton(
-                    icon: Icon(Icons.logout, color: colorScheme.error),
-                    tooltip: 'Logout',
-                    onPressed: () {
-                      context.read<AdminAuthBloc>().add(const AdminLogoutRequested());
-                    },
-                  ),
-                ),
-              ),
-            ),
+      body: Row(children: [
+        NavigationRail(
+          extended: MediaQuery.of(context).size.width > 1200,
+          selectedIndex: _selectedIndex,
+          destinations: _destinations,
+          onDestinationSelected: (index) {
+            setState(() => _selectedIndex = index);
+            context.go(_routes[index]);
+          },
+          leading: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Column(children: [
+              Icon(Icons.local_taxi, color: colorScheme.primary, size: 32),
+              const SizedBox(height: 4),
+              Text('RWP3', style: theme.textTheme.labelSmall?.copyWith(color: colorScheme.primary, fontWeight: FontWeight.bold)),
+            ]),
           ),
-          const VerticalDivider(width: 1, thickness: 1),
-          Expanded(child: widget.child),
-        ],
-      ),
+          trailing: Expanded(
+            child: Align(alignment: Alignment.bottomCenter,
+              child: Padding(padding: const EdgeInsets.only(bottom: 16),
+                child: IconButton(icon: Icon(Icons.logout, color: colorScheme.error), tooltip: 'Logout',
+                  onPressed: () => context.read<AdminAuthBloc>().add(const AdminLogoutRequested())))),
+          ),
+        ),
+        const VerticalDivider(width: 1, thickness: 1),
+        Expanded(child: widget.child),
+      ]),
     );
   }
 }
