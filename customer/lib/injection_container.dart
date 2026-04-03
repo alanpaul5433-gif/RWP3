@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'features/auth/data/datasources/auth_datasource.dart';
-import 'features/auth/data/datasources/firebase_auth_datasource.dart';
+import 'features/auth/data/datasources/mock_auth_datasource.dart';
+// import 'features/auth/data/datasources/firebase_auth_datasource.dart'; // Uncomment when Firebase Auth is enabled
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/usecases/login_with_email.dart';
@@ -109,8 +110,8 @@ Future<void> init() async {
     () => AuthRepositoryImpl(dataSource: sl()),
   );
 
-  // DataSource (Firebase Auth + Firestore)
-  sl.registerLazySingleton<AuthDataSource>(() => FirebaseAuthDataSource());
+  // DataSource (Mock for testing — swap to FirebaseAuthDataSource when Firebase Auth is enabled)
+  sl.registerLazySingleton<AuthDataSource>(() => MockAuthDataSource());
 
   // ========================
   // Profile Feature
