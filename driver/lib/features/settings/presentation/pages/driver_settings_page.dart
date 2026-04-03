@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../auth/presentation/bloc/driver_auth_bloc.dart';
+import '../../../auth/presentation/bloc/driver_auth_bloc.dart';
 
 class DriverSettingsPage extends StatelessWidget {
   const DriverSettingsPage({super.key});
@@ -43,7 +43,7 @@ class DriverSettingsPage extends StatelessWidget {
 
         ListTile(leading: const Icon(Icons.description_outlined), title: const Text('Terms of Service'), trailing: const Icon(Icons.chevron_right), onTap: () {}),
         ListTile(leading: const Icon(Icons.privacy_tip_outlined), title: const Text('Privacy Policy'), trailing: const Icon(Icons.chevron_right), onTap: () {}),
-        ListTile(leading: const Icon(Icons.info_outlined), title: const Text('About'), subtitle: const Text('RWP3 Driver v1.0.0'), trailing: const Icon(Icons.chevron_right), onTap: () {}),
+        ListTile(leading: const Icon(Icons.info_outlined), title: const Text('About'), subtitle: const Text('RWP Driver v1.0.0'), trailing: const Icon(Icons.chevron_right), onTap: () {}),
         const Divider(),
 
         ListTile(

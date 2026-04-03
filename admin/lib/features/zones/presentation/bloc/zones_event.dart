@@ -21,3 +21,10 @@ class ZoneDeleteRequested extends ZonesEvent {
   @override
   List<Object?> get props => [zoneId];
 }
+
+class ZoneToggleRequested extends ZonesEvent {
+  final String zoneId;
+  const ZoneToggleRequested(this.zoneId);
+  @override
+  List<Object?> get props => [zoneId];
+}

@@ -41,6 +41,12 @@ import '../features/notification/presentation/pages/notification_page.dart';
 import '../features/chat/presentation/bloc/chat_bloc.dart';
 import '../features/chat/presentation/pages/chat_page.dart';
 import '../features/chat/presentation/pages/inbox_page.dart';
+import '../features/intercity/presentation/bloc/intercity_bloc.dart';
+import '../features/intercity/presentation/pages/intercity_page.dart';
+import '../features/parcel/presentation/bloc/parcel_bloc.dart';
+import '../features/parcel/presentation/pages/parcel_page.dart';
+import '../features/rental/presentation/bloc/rental_bloc.dart';
+import '../features/rental/presentation/pages/rental_page.dart';
 import '../injection_container.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
@@ -63,22 +69,22 @@ GoRouter createRouter(AuthBloc authBloc) {
     },
     routes: [
       // ==================== PUBLIC ====================
-      GoRoute(path: '/splash', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const SplashPage())),
+      GoRoute(path: '/splash', builder: (context, state) => BlocProvider.value(value: authBloc, child: const SplashPage())),
       GoRoute(path: '/onboarding', builder: (context, state) => const OnboardingPage()),
-      GoRoute(path: '/login', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const LoginPage())),
-      GoRoute(path: '/signup', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const SignupPage())),
-      GoRoute(path: '/forgot-password', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const ForgotPasswordPage())),
+      GoRoute(path: '/login', builder: (context, state) => BlocProvider.value(value: authBloc, child: const LoginPage())),
+      GoRoute(path: '/signup', builder: (context, state) => BlocProvider.value(value: authBloc, child: const SignupPage())),
+      GoRoute(path: '/forgot-password', builder: (context, state) => BlocProvider.value(value: authBloc, child: const ForgotPasswordPage())),
 
       // ==================== HOME ====================
-      GoRoute(path: '/home', builder: (context, state) => BlocProvider.value(value: sl<AuthBloc>(), child: const HomePage())),
+      GoRoute(path: '/home', builder: (context, state) => BlocProvider.value(value: authBloc, child: const HomePage())),
 
       // ==================== PROFILE ====================
       GoRoute(path: '/profile', builder: (context, state) => MultiBlocProvider(
-        providers: [BlocProvider.value(value: sl<AuthBloc>()), BlocProvider(create: (_) => sl<ProfileBloc>())],
+        providers: [BlocProvider.value(value: authBloc), BlocProvider(create: (_) => sl<ProfileBloc>())],
         child: const EditProfilePage(),
       )),
 
-      // ==================== BOOKING FLOW ====================
+      // ==================== BOOKING FLOW (Cab) ====================
       GoRoute(path: '/select-location', builder: (context, state) {
         locationBloc = sl<LocationBloc>(); vehicleBloc = sl<VehicleBloc>();
         bookingBloc = sl<BookingBloc>(); paymentBloc = sl<PaymentBloc>();
@@ -93,7 +99,7 @@ GoRouter createRouter(AuthBloc authBloc) {
       }),
       GoRoute(path: '/confirm-booking', builder: (context, state) => MultiBlocProvider(
         providers: [
-          BlocProvider.value(value: sl<AuthBloc>()), BlocProvider.value(value: locationBloc!),
+          BlocProvider.value(value: authBloc), BlocProvider.value(value: locationBloc!),
           BlocProvider.value(value: bookingBloc!), BlocProvider.value(value: paymentBloc!),
         ],
         child: const ConfirmBookingPage(),
@@ -105,8 +111,7 @@ GoRouter createRouter(AuthBloc authBloc) {
 
       // ==================== RIDE HISTORY ====================
       GoRoute(path: '/ride-history', builder: (context, state) => BlocProvider(
-        create: (_) => sl<BookingBloc>(),
-        child: const RideHistoryPage(),
+        create: (_) => sl<BookingBloc>(), child: const RideHistoryPage(),
       )),
 
       // ==================== WALLET ====================
@@ -115,22 +120,34 @@ GoRouter createRouter(AuthBloc authBloc) {
         child: const WalletPage(),
       )),
 
+      // ==================== INTERCITY ====================
+      GoRoute(path: '/intercity', builder: (context, state) => BlocProvider(
+        create: (_) => sl<IntercityBloc>(), child: const IntercityPage(),
+      )),
+
+      // ==================== PARCEL ====================
+      GoRoute(path: '/parcel', builder: (context, state) => BlocProvider(
+        create: (_) => sl<ParcelBloc>(), child: const ParcelPage(),
+      )),
+
+      // ==================== RENTAL ====================
+      GoRoute(path: '/rental', builder: (context, state) => BlocProvider(
+        create: (_) => sl<RentalBloc>(), child: const RentalPage(),
+      )),
+
       // ==================== COUPONS ====================
       GoRoute(path: '/coupons', builder: (context, state) => BlocProvider(
-        create: (_) => sl<CouponBloc>()..add(const CouponsLoadRequested()),
-        child: const CouponListPage(),
+        create: (_) => sl<CouponBloc>()..add(const CouponsLoadRequested()), child: const CouponListPage(),
       )),
 
       // ==================== LOYALTY ====================
       GoRoute(path: '/loyalty', builder: (context, state) => BlocProvider(
-        create: (_) => sl<LoyaltyBloc>()..add(const LoyaltyLoadRequested('mock_user')),
-        child: const LoyaltyPage(),
+        create: (_) => sl<LoyaltyBloc>()..add(const LoyaltyLoadRequested('mock_user')), child: const LoyaltyPage(),
       )),
 
       // ==================== REFERRAL ====================
       GoRoute(path: '/referral', builder: (context, state) => BlocProvider(
-        create: (_) => sl<ReferralBloc>()..add(const ReferralCodeRequested('mock_user')),
-        child: const ReferralPage(),
+        create: (_) => sl<ReferralBloc>()..add(const ReferralCodeRequested('mock_user')), child: const ReferralPage(),
       )),
 
       // ==================== EMERGENCY CONTACTS ====================
@@ -141,14 +158,12 @@ GoRouter createRouter(AuthBloc authBloc) {
 
       // ==================== SOS ====================
       GoRoute(path: '/sos', builder: (context, state) => BlocProvider(
-        create: (_) => sl<SosBloc>()..add(const SosHistoryRequested('mock_user')),
-        child: const SosPage(),
+        create: (_) => sl<SosBloc>()..add(const SosHistoryRequested('mock_user')), child: const SosPage(),
       )),
 
       // ==================== SUPPORT ====================
       GoRoute(path: '/support', builder: (context, state) => BlocProvider(
-        create: (_) => sl<SupportBloc>()..add(const SupportTicketsLoadRequested('mock_user')),
-        child: const SupportPage(),
+        create: (_) => sl<SupportBloc>()..add(const SupportTicketsLoadRequested('mock_user')), child: const SupportPage(),
       )),
 
       // ==================== NOTIFICATIONS ====================
@@ -159,8 +174,7 @@ GoRouter createRouter(AuthBloc authBloc) {
 
       // ==================== CHAT ====================
       GoRoute(path: '/inbox', builder: (context, state) => BlocProvider(
-        create: (_) => sl<ChatBloc>()..add(const ChatInboxRequested('mock_user')),
-        child: const InboxPage(),
+        create: (_) => sl<ChatBloc>()..add(const ChatInboxRequested('mock_user')), child: const InboxPage(),
       )),
       GoRoute(path: '/chat/:userId', builder: (context, state) {
         final otherUserId = state.pathParameters['userId']!;
@@ -173,7 +187,7 @@ GoRouter createRouter(AuthBloc authBloc) {
       // ==================== SETTINGS ====================
       GoRoute(path: '/settings', builder: (context, state) => MultiBlocProvider(
         providers: [
-          BlocProvider.value(value: sl<AuthBloc>()),
+          BlocProvider.value(value: authBloc),
           BlocProvider.value(value: sl<ThemeBloc>()),
           BlocProvider.value(value: sl<LocaleBloc>()),
         ],

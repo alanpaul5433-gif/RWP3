@@ -14,10 +14,6 @@ class TrackingPage extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Ride Status'),
-        automaticallyImplyLeading: false,
-      ),
       body: BlocConsumer<BookingBloc, BookingState>(
         listener: (context, state) {
           if (state is BookingCancelledState) {
@@ -29,11 +25,8 @@ class TrackingPage extends StatelessWidget {
         },
         builder: (context, state) {
           BookingEntity? booking;
-          if (state is BookingPlacedState) {
-            booking = state.booking;
-          } else if (state is BookingUpdated) {
-            booking = state.booking;
-          }
+          if (state is BookingPlacedState) booking = state.booking;
+          if (state is BookingUpdated) booking = state.booking;
 
           if (booking == null) {
             return const Center(child: CircularProgressIndicator());
@@ -41,191 +34,313 @@ class TrackingPage extends StatelessWidget {
 
           return Column(
             children: [
-              // Map placeholder
+              // ==================== Top Section (Map placeholder + ETA) ====================
               Expanded(
-                flex: 3,
-                child: Container(
-                  color: colorScheme.surfaceContainerHighest,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.map_outlined, size: 64, color: colorScheme.outline),
-                        const SizedBox(height: 8),
-                        Text('Live tracking map',
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: colorScheme.onSurface.withValues(alpha: 0.5),
-                            )),
-                      ],
+                flex: 2,
+                child: Stack(
+                  children: [
+                    // Map placeholder
+                    Container(
+                      width: double.infinity,
+                      color: const Color(0xFFE8E5E0),
+                      child: Center(
+                        child: Icon(Icons.map_outlined, size: 80, color: colorScheme.onSurface.withValues(alpha: 0.15)),
+                      ),
                     ),
-                  ),
+
+                    // Top bar
+                    SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () => context.go('/home'),
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: const Icon(Icons.menu, size: 20),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Text(
+                              'RWP',
+                              style: theme.textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w800,
+                                color: colorScheme.primary,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            const Spacer(),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: colorScheme.primary,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                'Active Trip',
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            CircleAvatar(
+                              radius: 18,
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.person, size: 18, color: colorScheme.primary),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    // ETA overlay
+                    Positioned(
+                      left: 20,
+                      top: MediaQuery.of(context).padding.top + 60,
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.08),
+                              blurRadius: 16,
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'ESTIMATED ARRIVAL',
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: colorScheme.onSurface.withValues(alpha: 0.4),
+                                letterSpacing: 0.5,
+                                fontSize: 10,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  '4',
+                                  style: theme.textTheme.displayMedium?.copyWith(
+                                    fontWeight: FontWeight.w800,
+                                    color: colorScheme.primary,
+                                    height: 1,
+                                  ),
+                                ),
+                                const SizedBox(width: 4),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 6),
+                                  child: Text(
+                                    'MIN',
+                                    style: theme.textTheme.labelLarge?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                      color: colorScheme.primary,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
 
-              // Booking info card
-              Expanded(
-                flex: 2,
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      // Status badge
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: _statusColor(booking.bookingStatus)
-                              .withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          _statusLabel(booking.bookingStatus),
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            color: _statusColor(booking.bookingStatus),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+              // ==================== Bottom Sheet ====================
+              Container(
+                padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF5F2ED),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(28),
+                    topRight: Radius.circular(28),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.08),
+                      blurRadius: 20,
+                      offset: const Offset(0, -4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Driver info card
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
                       ),
-
-                      const SizedBox(height: 16),
-
-                      // Driver info (when assigned)
-                      if (booking.driverName != null) ...[
-                        Card(
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: colorScheme.primaryContainer,
-                              child: Icon(Icons.person,
-                                  color: colorScheme.onPrimaryContainer),
-                            ),
-                            title: Text(booking.driverName!,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w600)),
-                            subtitle:
-                                Text(booking.driverVehicleNumber ?? ''),
-                            trailing: IconButton(
-                              icon: Icon(Icons.phone,
-                                  color: colorScheme.secondary),
-                              tooltip: 'Call driver',
-                              onPressed: () {},
-                            ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              // Driver avatar
+                              CircleAvatar(
+                                radius: 28,
+                                backgroundColor: colorScheme.primary.withValues(alpha: 0.1),
+                                child: Icon(Icons.person, size: 28, color: colorScheme.primary),
+                              ),
+                              const SizedBox(width: 14),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      booking.driverName ?? 'Finding driver...',
+                                      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.star, color: Color(0xFFDAA520), size: 14),
+                                        const SizedBox(width: 2),
+                                        Text(
+                                          '4.96',
+                                          style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          'Gold Member Driver',
+                                          style: theme.textTheme.bodySmall?.copyWith(
+                                            color: colorScheme.onSurface.withValues(alpha: 0.4),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                      ],
-
-                      // OTP (when assigned, before ride starts)
-                      if (booking.otp != null &&
-                          (booking.bookingStatus ==
-                                  BookingStatus.driverAssigned ||
-                              booking.bookingStatus ==
-                                  BookingStatus.accepted)) ...[
-                        Card(
-                          color: colorScheme.secondaryContainer,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
+                          const SizedBox(height: 16),
+                          // Vehicle info
+                          Container(
+                            padding: const EdgeInsets.all(14),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFF5F2ED),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('Share OTP with driver: ',
-                                    style: theme.textTheme.bodyMedium),
-                                Text(
-                                  booking.otp!,
-                                  style:
-                                      theme.textTheme.headlineMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 4,
-                                    color: colorScheme.onSecondaryContainer,
+                                Icon(Icons.directions_car, size: 20, color: colorScheme.primary),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'White Tesla Model S',
+                                        style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
+                                      ),
+                                      Text(
+                                        booking.driverVehicleNumber ?? 'KNTK-774',
+                                        style: theme.textTheme.bodySmall?.copyWith(
+                                          color: colorScheme.onSurface.withValues(alpha: 0.4),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
                           ),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 14),
+
+                    // Action buttons
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _ActionBtn(
+                            icon: Icons.add_location_alt_outlined,
+                            label: 'Add Stop',
+                            onTap: () {},
+                          ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: _ActionBtn(
+                            icon: Icons.share_outlined,
+                            label: 'Share Trip',
+                            onTap: () {},
+                          ),
+                        ),
                       ],
+                    ),
 
-                      // Route info
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              _InfoRow(Icons.circle, const Color(0xFF27C041),
-                                  booking.pickupLocation.address),
-                              const SizedBox(height: 8),
-                              _InfoRow(Icons.circle, colorScheme.primary,
-                                  booking.dropLocation.address),
-                            ],
+                    const SizedBox(height: 14),
+
+                    // SOS Button
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.icon(
+                        onPressed: () => context.push('/sos'),
+                        style: FilledButton.styleFrom(
+                          backgroundColor: colorScheme.primary,
+                          minimumSize: const Size(double.infinity, 56),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
                           ),
                         ),
+                        icon: const Icon(Icons.warning_amber_rounded, size: 22),
+                        label: const Text(
+                          'SOS EMERGENCY',
+                          style: TextStyle(fontWeight: FontWeight.w800, letterSpacing: 1),
+                        ),
                       ),
+                    ),
 
-                      const SizedBox(height: 8),
-
-                      // Fare
-                      Card(
-                        child: ListTile(
-                          leading: Icon(Icons.receipt_long,
-                              color: colorScheme.secondary),
-                          title: const Text('Estimated Fare'),
-                          trailing: Text(
-                            '\$${booking.estimatedFare.toStringAsFixed(2)}',
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: colorScheme.primary,
+                    // OTP (when assigned)
+                    if (booking.otp != null &&
+                        (booking.bookingStatus == BookingStatus.driverAssigned ||
+                            booking.bookingStatus == BookingStatus.accepted)) ...[
+                      const SizedBox(height: 14),
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: colorScheme.primary.withValues(alpha: 0.2)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Share OTP: ',
+                              style: theme.textTheme.bodyMedium,
                             ),
-                          ),
+                            Text(
+                              booking.otp!,
+                              style: theme.textTheme.headlineSmall?.copyWith(
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: 6,
+                                color: colorScheme.primary,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-
-                      const SizedBox(height: 16),
-
-                      // Cancel button (only if not completed/cancelled)
-                      if (BookingStatus.activeStates
-                          .contains(booking.bookingStatus))
-                        OutlinedButton.icon(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (ctx) => AlertDialog(
-                                title: const Text('Cancel Ride'),
-                                content: const Text(
-                                    'Are you sure you want to cancel?'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(ctx),
-                                    child: const Text('No'),
-                                  ),
-                                  FilledButton(
-                                    style: FilledButton.styleFrom(
-                                        backgroundColor: colorScheme.error),
-                                    onPressed: () {
-                                      Navigator.pop(ctx);
-                                      context.read<BookingBloc>().add(
-                                            BookingCancelRequested(
-                                              bookingId: booking!.id,
-                                              reason: 'Changed my mind',
-                                            ),
-                                          );
-                                    },
-                                    child: const Text('Cancel Ride'),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: colorScheme.error,
-                            side: BorderSide(color: colorScheme.error),
-                          ),
-                          icon: const Icon(Icons.close),
-                          label: const Text('Cancel Ride'),
-                        ),
-
-                      const SizedBox(height: 16),
                     ],
-                  ),
+                  ],
                 ),
               ),
             ],
@@ -234,53 +349,36 @@ class TrackingPage extends StatelessWidget {
       ),
     );
   }
-
-  Color _statusColor(String status) {
-    return switch (status) {
-      BookingStatus.placed => const Color(0xFF9D9D9D),
-      BookingStatus.driverAssigned => const Color(0xFF1EADFF),
-      BookingStatus.accepted => const Color(0xFF1EADFF),
-      BookingStatus.ongoing => const Color(0xFFD19D00),
-      BookingStatus.onHold => const Color(0xFFFFC107),
-      BookingStatus.completed => const Color(0xFF27C041),
-      BookingStatus.cancelled => const Color(0xFFFE7235),
-      BookingStatus.rejected => const Color(0xFFFE7235),
-      _ => const Color(0xFF9D9D9D),
-    };
-  }
-
-  String _statusLabel(String status) {
-    return switch (status) {
-      BookingStatus.placed => 'Searching for driver...',
-      BookingStatus.driverAssigned => 'Driver assigned',
-      BookingStatus.accepted => 'Driver is on the way',
-      BookingStatus.ongoing => 'Ride in progress',
-      BookingStatus.onHold => 'Ride paused',
-      BookingStatus.completed => 'Ride completed',
-      BookingStatus.cancelled => 'Ride cancelled',
-      BookingStatus.rejected => 'Driver unavailable',
-      _ => status,
-    };
-  }
 }
 
-class _InfoRow extends StatelessWidget {
+class _ActionBtn extends StatelessWidget {
   final IconData icon;
-  final Color color;
-  final String text;
-
-  const _InfoRow(this.icon, this.color, this.text);
+  final String label;
+  final VoidCallback onTap;
+  const _ActionBtn({required this.icon, required this.label, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon, size: 10, color: color),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Text(text, style: Theme.of(context).textTheme.bodyMedium),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
         ),
-      ],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 20, color: const Color(0xFF1A1A1A)),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

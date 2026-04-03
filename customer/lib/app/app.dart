@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../features/auth/presentation/bloc/auth_bloc.dart';
 import '../features/settings/presentation/bloc/theme_bloc.dart';
@@ -27,13 +28,18 @@ class App extends StatelessWidget {
           return BlocBuilder<LocaleBloc, LocaleState>(
             builder: (context, localeState) {
               return MaterialApp.router(
-                title: 'RWP3',
+                title: 'RWP',
                 debugShowCheckedModeBanner: false,
                 theme: AppTheme.light,
                 darkTheme: AppTheme.dark,
                 themeMode: themeState.themeMode,
                 locale: localeState.locale,
                 supportedLocales: LocaleBloc.supportedLocales,
+                localizationsDelegates: const [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
                 routerConfig: createRouter(authBloc),
               );
             },

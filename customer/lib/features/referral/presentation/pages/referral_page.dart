@@ -45,7 +45,7 @@ class ReferralPage extends StatelessWidget {
 
             FilledButton.icon(
               onPressed: () {
-                // In production: Share.share('Join RWP3 with my code: $code')
+                // In production: Share.share('Join RWP with my code: $code')
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Share functionality requires native share plugin')));
               },
               icon: const Icon(Icons.share),

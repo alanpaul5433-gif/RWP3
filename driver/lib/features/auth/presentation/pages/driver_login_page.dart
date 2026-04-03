@@ -41,49 +41,96 @@ class _DriverLoginPageState extends State<DriverLoginPage> {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message), backgroundColor: colorScheme.error));
           }
         },
-        child: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Form(
-                key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Header
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 20, bottom: 32, left: 24, right: 24),
+                decoration: BoxDecoration(
+                  color: colorScheme.primary,
+                  borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(32), bottomRight: Radius.circular(32)),
+                ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 48),
-                    Icon(Icons.drive_eta_rounded, size: 64, color: colorScheme.primary),
-                    const SizedBox(height: 16),
-                    Text('Driver', style: theme.textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.bold, color: colorScheme.primary)),
-                    Text('Sign in to start driving', style: theme.textTheme.bodyLarge?.copyWith(color: colorScheme.onSurface.withValues(alpha: 0.6))),
-                    const SizedBox(height: 48),
-                    TextFormField(
-                      controller: _emailController, validator: Validators.email,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(labelText: 'Email', prefixIcon: Icon(Icons.email_outlined)),
+                    Row(
+                      children: [
+                        const Icon(Icons.drive_eta_rounded, color: Colors.white, size: 28),
+                        const SizedBox(width: 8),
+                        Text('RWP Driver', style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800, color: Colors.white)),
+                      ],
                     ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      controller: _passwordController, obscureText: _obscure, validator: Validators.password,
-                      onFieldSubmitted: (_) => _onLogin(),
-                      decoration: InputDecoration(
-                        labelText: 'Password', prefixIcon: const Icon(Icons.lock_outlined),
-                        suffixIcon: IconButton(icon: Icon(_obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined), onPressed: () => setState(() => _obscure = !_obscure)),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    BlocBuilder<DriverAuthBloc, DriverAuthState>(
-                      builder: (context, state) {
-                        final loading = state is DriverAuthLoading;
-                        return FilledButton(
-                          onPressed: loading ? null : _onLogin,
-                          child: loading ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)) : const Text('Sign In'),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 48),
+                    const SizedBox(height: 32),
+                    Text('Drive Your\nFuture', style: theme.textTheme.displaySmall?.copyWith(fontWeight: FontWeight.w800, color: Colors.white, height: 1.1)),
+                    const SizedBox(height: 8),
+                    Text('Sign in to start earning', style: theme.textTheme.bodyLarge?.copyWith(color: Colors.white.withValues(alpha: 0.7))),
                   ],
                 ),
               ),
-            ),
+
+              // Form
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 36, 24, 24),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('EMAIL', style: theme.textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w600, color: colorScheme.onSurface.withValues(alpha: 0.5), letterSpacing: 1.2)),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: _emailController, validator: Validators.email,
+                        keyboardType: TextInputType.emailAddress, textInputAction: TextInputAction.next,
+                        decoration: const InputDecoration(hintText: 'driver@rwp.com', prefixIcon: Icon(Icons.email_outlined)),
+                      ),
+                      const SizedBox(height: 20),
+                      Text('PASSWORD', style: theme.textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w600, color: colorScheme.onSurface.withValues(alpha: 0.5), letterSpacing: 1.2)),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: _passwordController, obscureText: _obscure, validator: Validators.password,
+                        onFieldSubmitted: (_) => _onLogin(),
+                        decoration: InputDecoration(
+                          hintText: '\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022',
+                          prefixIcon: const Icon(Icons.lock_outlined),
+                          suffixIcon: IconButton(icon: Icon(_obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined), onPressed: () => setState(() => _obscure = !_obscure)),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+                      BlocBuilder<DriverAuthBloc, DriverAuthState>(
+                        builder: (context, state) {
+                          final loading = state is DriverAuthLoading;
+                          return FilledButton(
+                            onPressed: loading ? null : _onLogin,
+                            child: loading
+                                ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                                : const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Text('Start Driving'), SizedBox(width: 8), Icon(Icons.arrow_forward, size: 18),
+                                  ]),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      OutlinedButton(
+                        onPressed: () {
+                          _emailController.text = 'driver@rwp.com';
+                          _passwordController.text = 'demo123';
+                          _onLogin();
+                        },
+                        style: OutlinedButton.styleFrom(side: BorderSide(color: colorScheme.primary.withValues(alpha: 0.3))),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          Icon(Icons.play_circle_outline, size: 18, color: colorScheme.primary),
+                          const SizedBox(width: 8),
+                          Text('Try Demo Account', style: TextStyle(color: colorScheme.primary)),
+                        ]),
+                      ),
+                      const SizedBox(height: 48),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

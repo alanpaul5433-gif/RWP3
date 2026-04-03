@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'features/auth/data/datasources/mock_driver_auth_datasource.dart';
+import 'features/auth/data/datasources/driver_auth_datasource.dart';
+import 'features/auth/data/datasources/firebase_driver_auth_datasource.dart';
 import 'features/auth/presentation/bloc/driver_auth_bloc.dart';
 import 'features/home/data/datasources/mock_driver_home_datasource.dart';
 import 'features/home/presentation/bloc/driver_home_bloc.dart';
@@ -13,9 +14,9 @@ import 'features/bank/presentation/bloc/bank_bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // Auth
+  // Auth (Firebase)
   sl.registerFactory(() => DriverAuthBloc(dataSource: sl()));
-  sl.registerLazySingleton(() => MockDriverAuthDataSource());
+  sl.registerLazySingleton<DriverAuthDataSource>(() => FirebaseDriverAuthDataSource());
 
   // Home
   sl.registerFactory(() => DriverHomeBloc(dataSource: sl()));

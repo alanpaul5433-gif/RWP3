@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Profile &amp; Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#98cdf2",
+              "tertiary": "#286182",
+              "secondary-container": "#bbd3fd",
+              "on-primary-container": "#fffbff",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#5b403f",
+              "on-primary-fixed": "#410007",
+              "surface-container-low": "#edf6ea",
+              "outline": "#8f6f6e",
+              "on-primary-fixed-variant": "#92001c",
+              "tertiary-fixed": "#c7e7ff",
+              "on-tertiary-fixed-variant": "#064c6b",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#ffb3b1",
+              "surface-container": "#e7f0e5",
+              "surface-bright": "#f3fcf0",
+              "on-tertiary-fixed": "#001e2e",
+              "surface": "#f3fcf0",
+              "on-error-container": "#93000a",
+              "on-error": "#ffffff",
+              "on-surface": "#161d16",
+              "tertiary-container": "#447a9c",
+              "primary-fixed": "#ffdad8",
+              "secondary-fixed-dim": "#b0c7f1",
+              "error": "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#30476a",
+              "surface-container-high": "#e2ebdf",
+              "secondary-fixed": "#d5e3ff",
+              "on-secondary-container": "#445a7f",
+              "surface-dim": "#d4ddd1",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#dce5d9",
+              "outline-variant": "#e4bebc",
+              "on-background": "#161d16",
+              "primary-fixed-dim": "#ffb3b1",
+              "surface-tint": "#bb152c",
+              "on-secondary-fixed": "#001b3c",
+              "secondary": "#485f84",
+              "background": "#f3fcf0",
+              "primary-container": "#db313f",
+              "surface-variant": "#dce5d9",
+              "primary": "#b7102a",
+              "inverse-surface": "#2a322b",
+              "on-tertiary-container": "#fcfcff",
+              "inverse-on-surface": "#eaf3e7"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .tap-highlight-transparent { -webkit-tap-highlight-color: transparent; }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f3fcf0]/70 dark:bg-[#161d16]/70 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#161d16] dark:text-white scale-95 active:duration-100 hover:opacity-80 transition-opacity" data-icon="menu">menu</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tighter text-2xl italic text-[#b7102a]">KINETIC</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
+<img alt="Alex Velocity" data-alt="Portrait of a professional young man with a confident smile, wearing a stylish dark jacket, soft studio lighting, high-end editorial aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVeeB4ro6rhiBTOwJxNt1u0lgs3ZLV0m3MmO_z0SC4GheBRZ0sHIcDZCv14tXkxLpARhb706P_IiWV_tU1VMcmP5mJ_0i8rx2_VRaav0WPuaXxKR0N5mlW3W9s4h58bszIeplxFvqblqjuD_GtiiGDqH_D39bD95bKQdOlfXTttmvXBQGW7p4UczehyuuPWBazg79tBT7N17J59TA7ypEPijMAwyEOxhh5WUnbpRjzQokFd8nXzCDaVAIcjj-0paOxEQCUpqPkSndp"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto min-h-screen">
+<!-- Profile Editorial Section -->
+<section class="mb-10 relative">
+<div class="bg-surface-container-lowest p-8 rounded-[24px] shadow-[0_12px_24px_rgba(22,29,22,0.06)] relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold font-headline uppercase tracking-wider">Gold Member</span>
+</div>
+<div class="flex items-end gap-6 mb-8">
+<div class="w-24 h-24 rounded-2xl overflow-hidden shadow-lg border-4 border-white">
+<img class="w-full h-full object-cover" data-alt="Detailed close-up of a stylish young male professional, modern urban background, soft morning sunlight, cinematic photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu7jFZGdjf6daLWohG-FYEU-B20062-pmGZEsjG6XLDycpyj2CyCu46mJCqUFbfwLMud0oBvVpPriA1xfXbhX4MOPvrSQttz1KD_59in6fu3aWWu8NsV7Qsayh8gP5OCX9Bv4q0A46B2w2NHU21sYIa5k93FS7GMwukXMBSbPTGJ89DvmuuI1b48z6XBBGI3VhG6VzWlHx3_tuq98nB5JafiJzLZPy_rBncpmO2zNvZJbyuzT3Na1FvJCwHndY2pfeYVDerCpq4stv"/>
+</div>
+<div>
+<h2 class="text-3xl font-headline font-extrabold tracking-tight text-on-surface">Alex Velocity</h2>
+<div class="flex items-center gap-1 text-secondary font-medium">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.98 Rating</span>
+</div>
+</div>
+</div>
+<!-- Bento Stats Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-5 rounded-xl flex flex-col justify-between aspect-[1.5/1]">
+<span class="text-secondary text-xs font-bold uppercase tracking-widest font-label">Loyalty Points</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-black text-primary">2,480</span>
+<span class="text-primary/60 text-xs font-bold uppercase">KNT</span>
+</div>
+</div>
+<div class="bg-surface-container p-5 rounded-xl flex flex-col justify-between aspect-[1.5/1]">
+<span class="text-secondary text-xs font-bold uppercase tracking-widest font-label">Referral Code</span>
+<div class="flex items-center justify-between">
+<span class="text-xl font-headline font-bold tracking-widest text-on-surface">VELO777</span>
+<button class="material-symbols-outlined text-primary" data-icon="content_copy">content_copy</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Settings Section -->
+<section class="space-y-4">
+<h3 class="text-xs font-headline font-black uppercase tracking-[0.2em] text-secondary/60 px-2">Account Settings</h3>
+<div class="bg-surface-container-low rounded-[24px] overflow-hidden">
+<!-- Payment Methods -->
+<div class="flex items-center justify-between p-5 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm text-primary">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Payment Methods</p>
+<p class="text-sm text-secondary/70">Apple Pay, Visa •••• 4242</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Emergency Contacts -->
+<div class="flex items-center justify-between p-5 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm text-primary">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Emergency Contacts</p>
+<p class="text-sm text-secondary/70">2 contacts added</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Dark Mode -->
+<div class="flex items-center justify-between p-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm text-primary">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Appearance</p>
+<p class="text-sm text-secondary/70">Light Mode active</p>
+</div>
+</div>
+<div class="w-12 h-6 bg-surface-container-highest rounded-full p-1 cursor-pointer">
+<div class="w-4 h-4 bg-primary rounded-full shadow-md"></div>
+</div>
+</div>
+<!-- Language -->
+<div class="flex items-center justify-between p-5 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm text-primary">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Language</p>
+<p class="text-sm text-secondary/70">English (US)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Logout Section -->
+<div class="pt-6">
+<button class="w-full flex items-center justify-center gap-3 p-5 rounded-[20px] bg-error-container text-error font-headline font-extrabold uppercase tracking-widest text-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Sign Out
+                </button>
+</div>
+</section>
+</main>
+<!-- Navigation Drawer (Hidden by default, used for structure) -->
+<aside class="hidden fixed inset-0 z-[60] bg-black/20 backdrop-blur-sm">
+<nav class="h-full w-80 rounded-r-3xl bg-[#f3fcf0] dark:bg-[#161d16] flex flex-col p-8 gap-6 shadow-2xl">
+<div class="flex flex-col gap-1 mb-8">
+<div class="w-16 h-16 rounded-2xl overflow-hidden border-2 border-primary mb-2">
+<img alt="Alex Velocity" data-alt="Close up avatar of a professional driver with a friendly expression, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFofl_039OphEI1EeT7geFiuhA0AxBqP6zcBvber_MBA7k2JNZk5JqZx7WWuxPwBsdOKK3-fU3tOp4MSB8UrTmsT5pj68kuJNAQwGjbcWcev0Hsd1sRtkmPcPaqyKqZI-jeToYHa1ivgChtF8A6hzMRh5CL0hKzZXqFbdEvWA1_Ral7P-fEI9EdlRV4GCQIPeA599eAbhUyd5SWvl_S5qOwLBnpLZ_GFJsWFm8nSP_3NwsfAtbz2nHdkiVzIgRdHyMgaSYzQaY7Aii"/>
+</div>
+<h4 class="font-['Plus_Jakarta_Sans'] text-lg font-bold text-on-surface">Alex Velocity</h4>
+<p class="text-sm font-medium text-primary">Gold Member</p>
+</div>
+<a class="flex items-center gap-4 p-3 text-[#161d16] dark:text-white hover:bg-[#e7f0e5] rounded-xl transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined" data-icon="sell">sell</span>
+<span class="font-headline font-bold">Promotions</span>
+</a>
+<a class="flex items-center gap-4 p-3 text-[#161d16] dark:text-white hover:bg-[#e7f0e5] rounded-xl transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-headline font-bold">Payments</span>
+</a>
+<a class="flex items-center gap-4 p-3 text-[#161d16] dark:text-white hover:bg-[#e7f0e5] rounded-xl transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span class="font-headline font-bold">Safety Center</span>
+</a>
+<a class="flex items-center gap-4 p-3 text-[#161d16] dark:text-white hover:bg-[#e7f0e5] rounded-xl transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined" data-icon="policy">policy</span>
+<span class="font-headline font-bold">Legal</span>
+</a>
+<hr class="border-surface-container-highest my-2"/>
+<a class="flex items-center gap-4 p-3 text-error rounded-xl transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-headline font-bold">Logout</span>
+</a>
+</nav>
+</aside>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[24px] bg-[#f3fcf0] dark:bg-[#161d16] shadow-[0_-12px_24px_rgba(22,29,22,0.06)] flex justify-around items-center h-20 pb-safe px-4">
+<button class="flex flex-col items-center justify-center text-[#485f84] opacity-60 hover:text-[#b7102a] transition-all tap-highlight-transparent">
+<span class="material-symbols-outlined" data-icon="local_taxi">local_taxi</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold mt-1">Ride</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#485f84] opacity-60 hover:text-[#b7102a] transition-all tap-highlight-transparent">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold mt-1">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#485f84] opacity-60 hover:text-[#b7102a] transition-all tap-highlight-transparent">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold mt-1">Support</span>
+</button>
+<!-- ACTIVE TAB -->
+<button class="flex flex-col items-center justify-center text-[#b7102a] scale-110 tap-highlight-transparent">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
+import 'driver_auth_datasource.dart';
 
-class MockDriverAuthDataSource {
+class MockDriverAuthDataSource implements DriverAuthDataSource {
   DriverEntity? _currentDriver;
 
   Future<DriverEntity> loginWithEmail(String email, String password) async {

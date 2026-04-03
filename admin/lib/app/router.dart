@@ -22,6 +22,8 @@ import '../features/subscriptions/presentation/bloc/subscriptions_bloc.dart';
 import '../features/subscriptions/presentation/pages/subscriptions_page.dart';
 import '../features/roles/presentation/bloc/roles_bloc.dart';
 import '../features/roles/presentation/pages/roles_page.dart';
+import '../features/vehicles/presentation/bloc/vehicles_bloc.dart';
+import '../features/vehicles/presentation/pages/vehicles_page.dart';
 import '../injection_container.dart';
 
 GoRouter createAdminRouter(AdminAuthBloc authBloc) {
@@ -53,6 +55,8 @@ GoRouter createAdminRouter(AdminAuthBloc authBloc) {
             create: (_) => sl<DriversBloc>()..add(const DriversLoadRequested()), child: const DriversPage())),
           GoRoute(path: '/bookings', builder: (_, state) => BlocProvider(
             create: (_) => sl<AdminBookingsBloc>()..add(const AdminBookingsLoadRequested()), child: const BookingsPage())),
+          GoRoute(path: '/vehicles', builder: (_, state) => BlocProvider(
+            create: (_) => sl<VehiclesBloc>()..add(const VehiclesLoadRequested()), child: const VehiclesPage())),
           GoRoute(path: '/settings', builder: (_, state) => BlocProvider(
             create: (_) => sl<SettingsBloc>()..add(const SettingsLoadRequested()), child: const AdminSettingsPage())),
           GoRoute(path: '/zones', builder: (_, state) => BlocProvider(

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KINETIC | Ride Tracking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#98cdf2",
+              "tertiary": "#286182",
+              "secondary-container": "#bbd3fd",
+              "on-primary-container": "#fffbff",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#5b403f",
+              "on-primary-fixed": "#410007",
+              "surface-container-low": "#edf6ea",
+              "outline": "#8f6f6e",
+              "on-primary-fixed-variant": "#92001c",
+              "tertiary-fixed": "#c7e7ff",
+              "on-tertiary-fixed-variant": "#064c6b",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#ffb3b1",
+              "surface-container": "#e7f0e5",
+              "surface-bright": "#f3fcf0",
+              "on-tertiary-fixed": "#001e2e",
+              "surface": "#f3fcf0",
+              "on-error-container": "#93000a",
+              "on-error": "#ffffff",
+              "on-surface": "#161d16",
+              "tertiary-container": "#447a9c",
+              "primary-fixed": "#ffdad8",
+              "secondary-fixed-dim": "#b0c7f1",
+              "error": "#ba1a1a",
+              "on-error": "#ffffff",
+              "on-surface": "#161d16",
+              "tertiary-container": "#447a9c",
+              "primary-fixed": "#ffdad8",
+              "secondary-fixed-dim": "#b0c7f1",
+              "error": "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#30476a",
+              "surface-container-high": "#e2ebdf",
+              "secondary-fixed": "#d5e3ff",
+              "on-secondary-container": "#445a7f",
+              "surface-dim": "#d4ddd1",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#dce5d9",
+              "outline-variant": "#e4bebc",
+              "on-background": "#161d16",
+              "primary-fixed-dim": "#ffb3b1",
+              "surface-tint": "#bb152c",
+              "on-secondary-fixed": "#001b3c",
+              "secondary": "#485f84",
+              "background": "#f3fcf0",
+              "primary-container": "#db313f",
+              "surface-variant": "#dce5d9",
+              "primary": "#b7102a",
+              "inverse-surface": "#2a322b",
+              "on-tertiary-container": "#fcfcff",
+              "inverse-on-surface": "#eaf3e7"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.bg-map {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBRYio2BFxaWcd2ubpf4OlZ1SQkxccjD1b2dYvIVSw3V_ixCBimjPp3oON9m57_TIFeDLtypYsTlPO4Tlst3ZveUe_oICQZmQA5I3hlih-ryXm8b57dyDcGkyXd3OytJSQqMdB9UtgL_jI7KO8mBnv7EdGOFuKSaTjf9DGLJXgq9XBpjw2a1C-WzpchjK6qyAwC6p3KyFUbpobsDKIQh4FO9Hc72GSdBZqkLZckTOewbCahlw9xXVTFr_z2zrYyKiBST2uc5sv4YdOx);
+    background-size: cover;
+    background-position: center
+    }
+.glass-panel {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden">
+<!-- Top Navigation Shell (Injected from Shared Components JSON) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 w-full bg-[#f3fcf0]/70 dark:bg-[#161d16]/70 backdrop-blur-xl">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#161d16] dark:text-white hover:opacity-80 transition-opacity active:duration-100 scale-95">menu</button>
+<h1 class="text-2xl font-black italic text-[#b7102a] tracking-tighter font-['Plus_Jakarta_Sans']">KINETIC</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-['Plus_Jakarta_Sans'] font-bold tracking-tighter text-[#161d16] dark:text-white">Active Trip</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
+<img alt="User profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSmWOQLadZtHcndSceFkkW87uvq4i6dRbpZtOPM0mO0PWTM3QPH-TeWzZqhuQG5I7eVibUICcCzJ5-WyOxfx9zzJFhRSkcZzlinEVBGRhsajQ8eZ57ADrZ9jYgGTbVZLKRZ5H7rnMmZUpt96VKEZRm61cLZ0Z6QepX-4eJorTThxXBG09M9lbDL7O9wDKpFLGnUA8p7MpaRPo8ZJu5n2eJa1Ra-lxDjPR-bKB_bQu3gDRls2hibn2ThCPwsdNrGRiQ3Yl3BFZFdVxI"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (Live Map View) -->
+<main class="relative h-screen w-full pt-16">
+<!-- Live Map Background -->
+<div class="absolute inset-0 z-0 bg-map" data-alt="high angle view of minimalist vector style city map with soft green and white roads and a thin red path line showing a vehicle route" data-location="New York City" style="">
+<!-- Simulated Route Path Overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40">
+<path d="M100,500 Q250,450 400,550 T700,400" fill="none" stroke="#b7102a" stroke-dasharray="12 12" stroke-linecap="round" stroke-width="6"></path>
+</svg>
+<!-- Car Icon Overlay -->
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-16 h-16 bg-primary/20 rounded-full animate-ping"></div>
+<div class="relative bg-surface-container-lowest p-3 rounded-full shadow-[0_12px_24px_rgba(22,29,22,0.12)]">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+</div>
+</div>
+</div>
+<!-- Destination Pin -->
+<div class="absolute left-[70%] top-[40%] -translate-x-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+<!-- Floating HUD Elements -->
+<div class="absolute top-24 left-6 z-20 flex flex-col gap-4">
+<div class="bg-surface/80 glass-panel p-4 rounded-xl shadow-[0_12px_24px_rgba(22,29,22,0.06)] border border-white/20">
+<p class="text-[10px] uppercase font-bold tracking-[0.2em] text-secondary opacity-70">Estimated Arrival</p>
+<h2 class="text-4xl font-headline font-extrabold tracking-tighter text-on-surface">4 MIN</h2>
+</div>
+</div>
+<!-- Bottom Sheet Interaction Area -->
+<div class="absolute bottom-0 left-0 w-full z-30 px-4 pb-8">
+<div class="bg-surface-container-lowest rounded-[32px] shadow-[0_-12px_48px_rgba(22,29,22,0.1)] overflow-hidden max-w-2xl mx-auto">
+<!-- Drag Handle -->
+<div class="w-full flex justify-center py-4">
+<div class="w-12 h-1.5 bg-surface-variant rounded-full"></div>
+</div>
+<div class="px-8 pb-10 flex flex-col gap-8">
+<!-- Driver Info Section -->
+<div class="flex items-center justify-between gap-4">
+<div class="flex items-center gap-5">
+<div class="relative">
+<div class="w-20 h-20 rounded-2xl overflow-hidden shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="professional headshot of a smiling young man in a clean polo shirt, bright daylight lighting, modern urban vibe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR_94qTcKJ9zj5CTUfqGf0PgAgfYQqxD4jEmUW57J2li5y75t9nxRcOsCjCao6wyNUG2hzLwW7_1U9ZEXOGq6dvC6KxTT_dy5vynXTskZS2qehOGjUvdGGmpIBRb_BIcQpWi3M5c_VIjNzyc5IWdz7fdBYy5L7obdWcQgDuy2cIO373k2SBvgHyGJM-gb0sUtS4wT906E52zzX4WyGS9xhmXrH5gl0xXspsx3ehPCqDTTYhndeI7dn8HHAqbOo2vw20XNFk5aFwz32"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white px-2 py-1 rounded-lg text-xs font-bold font-headline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    4.98
+                                </div>
+</div>
+<div>
+<h3 class="text-2xl font-headline font-extrabold text-on-surface leading-tight">Alex Velocity</h3>
+<p class="text-secondary font-medium">Gold Member Driver</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+<!-- Vehicle Details Bento Style -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container p-6 rounded-2xl flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary mb-4" style="font-variation-settings: 'FILL' 1;">electric_car</span>
+<div>
+<h4 class="text-on-surface font-headline font-bold">White Tesla Model S</h4>
+<p class="text-secondary text-sm font-bold tracking-widest mt-1">KNTK-774</p>
+</div>
+</div>
+<div class="relative bg-surface-container rounded-2xl overflow-hidden group">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="sleek white luxury electric sedan parked in a minimalist studio setting, soft cinematic lighting reflecting on the hood" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABkqQF9RGZmd3IxQV-OZQrLaE9lbftv4s-RoaZU77HSF0OICQDXKmbXFnEiGY36kHG3usGhWnt3HKzsCfguLV2lfEN7veiL1O4C9rXejnc5cTcmWqzQIX9MW9WUdR7WkYfQG7ODTkDs-eEFNWGLVLgQeGU7jSMPWTghiqd_IwHKV5Bd32NiZIDL0to2DBkfA9lqtQQ49-BkRSH9X1rtz0Q3A0Ve153TMEsxYTw2WVWSceXCKLAYZtx3DVWTwdpFb_pFJe78j2tHZJJ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4">
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-high py-4 rounded-xl font-headline font-bold text-on-surface hover:bg-surface-variant transition-all active:scale-95">
+                                Add Stop
+                            </button>
+<button class="flex-1 bg-surface-container-high py-4 rounded-xl font-headline font-bold text-on-surface hover:bg-surface-variant transition-all active:scale-95">
+                                Share Trip
+                            </button>
+</div>
+<!-- Large SOS Button -->
+<button class="w-full bg-primary text-white py-5 rounded-2xl font-headline font-black text-xl tracking-[0.1em] flex items-center justify-center gap-3 shadow-[0_12px_24px_rgba(183,16,42,0.2)] hover:opacity-90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+                            SOS EMERGENCY
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation Drawer (Pre-defined Shell, Hidden by default) -->
+<aside class="fixed inset-0 z-[60] bg-[#161d16]/50 backdrop-blur-sm pointer-events-none opacity-0 transition-opacity">
+<div class="h-full w-80 bg-[#f3fcf0] dark:bg-[#161d16] rounded-r-3xl flex flex-col p-8 gap-6 shadow-2xl -translate-x-full transition-transform duration-300 ease-out">
+<div class="flex flex-col gap-2 mb-4">
+<div class="w-16 h-16 rounded-2xl overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6a97wJJBYWmxg1wYNoiidC-wkzLQoPSTs1cpnSvGNpballCxz-h_kKIT4CfZQb82thOGRW64TxHnr22UQWSlDpXIGu5qlxudW7gvtXC9Tv6DyTdf1d6LxgSe3Hdcg80Gdmp9jwShIGvxsFlCDwUyI85T26Q1elMUC3Nizn-OxyV6sIOzeUu0ioeBvANGDFC4dIB_iN8eTjBePSVi-aY8hbc3JsHABuVgfQt-iUccpaLDPkyf0mS1RwKtF95roWFwYpeez16TvhumU"/>
+</div>
+<h2 class="font-headline text-lg font-bold text-on-surface mt-2">Alex Velocity</h2>
+<p class="text-sm text-secondary font-medium">Gold Member • 4.98 Rating</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-4 p-3 text-[#161d16] dark:text-white font-headline font-bold hover:translate-x-2 transition-transform" href="#">
+<span class="material-symbols-outlined">sell</span> Promotions
+                </a>
+<a class="flex items-center gap-4 p-3 text-[#161d16] dark:text-white font-headline font-bold hover:translate-x-2 transition-transform" href="#">
+<span class="material-symbols-outlined">payments</span> Payments
+                </a>
+<a class="flex items-center gap-4 p-3 bg-[#b7102a] text-white rounded-xl font-headline font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span> Safety Center
+                </a>
+<a class="flex items-center gap-4 p-3 text-[#161d16] dark:text-white font-headline font-bold hover:translate-x-2 transition-transform" href="#">
+<span class="material-symbols-outlined">policy</span> Legal
+                </a>
+</nav>
+<div class="mt-auto border-t border-surface-variant pt-6">
+<a class="flex items-center gap-4 p-3 text-error font-headline font-bold" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- Bottom Nav Bar (Mobile Only - Suppressed for task focus as per rules) -->
+<!-- The navigation shell is suppressed because the user is in a "focused journey" (Tracking Screen) -->
+</body></html>

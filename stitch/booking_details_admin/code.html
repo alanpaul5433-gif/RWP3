@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velocity Admin - Booking Details</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#fcfcff",
+              "on-secondary-container": "#445a7f",
+              "surface-container": "#e7f0e5",
+              "on-tertiary-fixed": "#001e2e",
+              "surface-dim": "#d4ddd1",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#ffdad8",
+              "on-secondary": "#ffffff",
+              "tertiary": "#286182",
+              "secondary-fixed-dim": "#b0c7f1",
+              "secondary": "#485f84",
+              "tertiary-fixed-dim": "#98cdf2",
+              "background": "#f3fcf0",
+              "primary-fixed-dim": "#ffb3b1",
+              "surface-container-high": "#e2ebdf",
+              "surface-bright": "#f3fcf0",
+              "on-primary-fixed": "#410007",
+              "surface-tint": "#bb152c",
+              "secondary-container": "#bbd3fd",
+              "inverse-on-surface": "#eaf3e7",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#c7e7ff",
+              "outline": "#8f6f6e",
+              "on-surface-variant": "#5b403f",
+              "on-surface": "#161d16",
+              "on-primary-container": "#fffbff",
+              "on-background": "#161d16",
+              "on-primary": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#064c6b",
+              "surface-container-highest": "#dce5d9",
+              "surface-variant": "#dce5d9",
+              "primary": "#b7102a",
+              "secondary-fixed": "#d5e3ff",
+              "inverse-surface": "#2a322b",
+              "on-tertiary": "#ffffff",
+              "surface": "#f3fcf0",
+              "outline-variant": "#e4bebc",
+              "on-secondary-fixed-variant": "#30476a",
+              "primary-container": "#db313f",
+              "on-secondary-fixed": "#001b3c",
+              "on-primary-fixed-variant": "#92001c",
+              "tertiary-container": "#447a9c",
+              "surface-container-low": "#edf6ea",
+              "inverse-primary": "#ffb3b1"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#f3fcf0]/70 dark:bg-stone-950/70 backdrop-blur-xl flex justify-between items-center w-full px-8 h-16">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#b7102a] italic uppercase tracking-tighter">Velocity Admin</span>
+<div class="hidden md:flex items-center gap-6">
+<span class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#b7102a] transition-colors duration-200 cursor-pointer">Live Map</span>
+<span class="text-[#b7102a] font-bold border-b-2 border-[#b7102a] pb-1 cursor-pointer">Bookings</span>
+<span class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#b7102a] transition-colors duration-200 cursor-pointer">Fleet</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-secondary" data-icon="help">help</span>
+<span class="material-symbols-outlined text-secondary" data-icon="settings">settings</span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="Admin User Profile" data-alt="Close-up professional portrait of a senior logistics manager in a modern office environment with soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlM-hpcBQ4wAhVOTOO-r3nSRwN_biUgAi4tLnLwP5UY-kGwGMiM4HwThHm4AV8nQC3B14yMoHI7waFWn_YLaL8ZAGxBTGYBeGsED1KJJJoHJhj18n0hZ42mlYp_9qhr1z2YX9VBtS3029RXqFgBXFplgF4AfGh5rq-ny_7G5EdkJYata05WYTV8oWfZmKatybXP1v3tBhxZPL1Q0vTzAUc9MAN72girtUeRUPIU2OUnUzBKzYFiRFhckNhoJTPQd6CutVgskNznxTM"/>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-full w-64 pt-20 pb-8 flex flex-col bg-[#e7f0e5] dark:bg-stone-900 border-r-0 z-40 hidden md:flex">
+<div class="px-6 mb-8">
+<h2 class="text-xl font-extrabold text-[#b7102a]">Fleet Control</h2>
+<p class="text-xs text-secondary font-semibold tracking-wide uppercase opacity-70">Operational Hub</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center gap-3 text-stone-500 dark:text-stone-400 py-3 px-6 hover:bg-[#f3fcf0] dark:hover:bg-stone-800/50 hover:text-[#b7102a] transition-all cursor-pointer group">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-sm font-semibold tracking-wide">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 bg-[#ffffff] dark:bg-stone-800 text-[#b7102a] rounded-r-full py-3 px-6 shadow-sm translate-x-1 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="local_taxi">local_taxi</span>
+<span class="font-['Inter'] text-sm font-semibold tracking-wide">Bookings</span>
+</div>
+<div class="flex items-center gap-3 text-stone-500 dark:text-stone-400 py-3 px-6 hover:bg-[#f3fcf0] dark:hover:bg-stone-800/50 hover:text-[#b7102a] transition-all cursor-pointer group">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-['Inter'] text-sm font-semibold tracking-wide">Live Map</span>
+</div>
+<div class="flex items-center gap-3 text-stone-500 dark:text-stone-400 py-3 px-6 hover:bg-[#f3fcf0] dark:hover:bg-stone-800/50 hover:text-[#b7102a] transition-all cursor-pointer group">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-['Inter'] text-sm font-semibold tracking-wide">Financials</span>
+</div>
+<div class="flex items-center gap-3 text-stone-500 dark:text-stone-400 py-3 px-6 hover:bg-[#f3fcf0] dark:hover:bg-stone-800/50 hover:text-[#b7102a] transition-all cursor-pointer group">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="font-['Inter'] text-sm font-semibold tracking-wide">Drivers</span>
+</div>
+</nav>
+<div class="px-6 mb-6">
+<button class="w-full bg-primary text-on-primary font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                Dispatch Vehicle
+            </button>
+</div>
+<div class="mt-auto border-t border-outline-variant/15 pt-4 space-y-1">
+<div class="flex items-center gap-3 text-stone-500 dark:text-stone-400 py-2 px-6 hover:text-[#b7102a] transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="text-sm font-semibold">Support</span>
+</div>
+<div class="flex items-center gap-3 text-stone-500 dark:text-stone-400 py-2 px-6 hover:text-[#b7102a] transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-sm font-semibold">Logs</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-20 px-8 pb-12">
+<!-- Header Section: Editorial Scale -->
+<div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
+<div>
+<nav class="flex items-center gap-2 text-secondary text-sm font-medium mb-2">
+<span>Bookings</span>
+<span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface">#VEL-8829-QX</span>
+</nav>
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface leading-tight">
+                    Ride Details <span class="text-primary italic opacity-20 ml-2">Active</span>
+</h1>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-high text-on-secondary-container px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-secondary-container transition-all">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                    Export Receipt
+                </button>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="cancel">cancel</span>
+                    Force End Ride
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Map Section: Tonal Transition & Glass HUD -->
+<div class="col-span-12 lg:col-span-8 h-[500px] bg-surface-container rounded-3xl relative overflow-hidden group">
+<img alt="Map view" class="w-full h-full object-cover grayscale-[0.2] contrast-[1.1]" data-alt="Top-down digital map of city streets with a glowing red route line indicating taxi path between two points." data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUCLvZCyiSeX_i6e-uL-C-Hf66kAaMfGuDSKJbUgvYm_QCxkNUGALLGXtLx3Z4C214l63pGoNRRtxlT9FFB1E8jQClRd8J3Z4cYlQgGWMzhbxflAVSpby3lasL2TNyJC7qmCsHF586FFqd5gawUUmTjLx7QKZu8Rfi9wqFDiNLootEA6oCQQ5PH6SKWAcDDyqtGr1dRMNuEutUuffL-Q7rehdt_2XTzxWjnLKJwcctwWKJNWTzHkLg1EDUNY2cLe2mdqnZR9fEbRYY"/>
+<!-- Glass HUD Overlays -->
+<div class="absolute top-6 left-6 flex flex-col gap-3">
+<div class="bg-surface/70 backdrop-blur-xl p-4 rounded-2xl shadow-sm border border-white/20">
+<p class="text-[10px] uppercase tracking-widest font-bold text-secondary opacity-70">Current Velocity</p>
+<p class="text-2xl font-black text-primary">42 <span class="text-sm font-medium">mph</span></p>
+</div>
+<div class="bg-surface/70 backdrop-blur-xl p-4 rounded-2xl shadow-sm border border-white/20">
+<p class="text-[10px] uppercase tracking-widest font-bold text-secondary opacity-70">ETA</p>
+<p class="text-2xl font-black text-on-surface">6 <span class="text-sm font-medium">min</span></p>
+</div>
+</div>
+<div class="absolute bottom-6 left-6 right-6 bg-surface/70 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-white/20 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-primary-container/20 p-3 rounded-full">
+<span class="material-symbols-outlined text-primary" data-icon="route">route</span>
+</div>
+<div>
+<p class="text-xs font-bold text-secondary">Pickup</p>
+<p class="font-semibold text-on-surface">322 Market St, San Francisco</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-30" data-icon="east">east</span>
+<div class="text-right">
+<p class="text-xs font-bold text-secondary">Drop-off</p>
+<p class="font-semibold text-on-surface">Pier 39, Fisherman's Wharf</p>
+</div>
+</div>
+</div>
+<!-- Side Card: Payment Breakdown (Tonal Layering) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm">
+<h3 class="text-xl font-bold mb-6 flex items-center justify-between">
+                        Payment Breakdown
+                        <span class="material-symbols-outlined text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
+</h3>
+<div class="space-y-4 font-medium text-secondary">
+<div class="flex justify-between items-center">
+<span>Base Fare</span>
+<span class="text-on-surface">$5.50</span>
+</div>
+<div class="flex justify-between items-center">
+<span>Distance (4.2 mi)</span>
+<span class="text-on-surface">$12.60</span>
+</div>
+<div class="flex justify-between items-center">
+<span>Duration (12 min)</span>
+<span class="text-on-surface">$3.20</span>
+</div>
+<div class="flex justify-between items-center text-error">
+<span>Promo (VELO_NEW)</span>
+<span>-$2.00</span>
+</div>
+<div class="pt-4 border-t border-outline-variant/15 flex justify-between items-center">
+<span>Subtotal</span>
+<span class="text-on-surface">$19.30</span>
+</div>
+<div class="flex justify-between items-center text-[10px] uppercase tracking-wider font-bold opacity-50">
+<span>Tax (8.5%)</span>
+<span>$1.64</span>
+</div>
+<div class="flex justify-between items-center text-primary font-bold">
+<span>Velocity Commission</span>
+<span>$3.86</span>
+</div>
+<div class="pt-6 flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase tracking-widest font-black text-secondary">Total Fare</p>
+<p class="text-4xl font-black text-on-surface tracking-tighter leading-none">$24.80</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">PAID</span>
+</div>
+</div>
+</div>
+<!-- Driver Card (Asymmetric Layout) -->
+<div class="bg-surface-container-low p-6 rounded-3xl relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-[10px] uppercase tracking-widest font-bold text-secondary mb-1">Assigned Driver</p>
+<h3 class="text-xl font-bold text-on-surface leading-tight">Marco Rossi</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-yellow-500 text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.92</span>
+</div>
+</div>
+<div class="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white shadow-md">
+<img alt="Driver Portrait" data-alt="Close-up of a friendly male driver in a professional uniform smiling warmly, studio lighting with clean background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHy7pR7TMqBQtRYQgRrBamJlbC-gAw0ff_bixcnweaiZihiLZ4CCLJNY0qzK8zistL1cEaTqinyh3YWeCoJ2vkU2GStKrld7fUc25Okl1tQevHCZj3AKbkSvrUl2jKTKLLB4OV4lOqY7LTwjI97tOUIiFcyYrUuNeil0ZLeglnliI6Oxtu2RygtQ7gouy99J7Ws48CV5_Hd-Up4VTOUYBDKeoJnunTBbA9__TQc6nTg0UGcEAmFznScNvjbgfLWJ0EdLiip59K3K_m"/>
+</div>
+</div>
+<div class="flex items-center justify-between text-sm font-medium text-secondary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="directions_car">directions_car</span>
+<span>Toyota Prius (Black)</span>
+</div>
+<span class="bg-on-surface text-surface px-2 py-0.5 rounded-lg font-bold text-[10px]">6YXW122</span>
+</div>
+</div>
+</div>
+<!-- Customer Detail Section -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 bg-surface-container-lowest p-8 rounded-3xl shadow-sm">
+<p class="text-[10px] uppercase tracking-widest font-bold text-secondary mb-4">Passenger</p>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="text-xl font-bold text-on-secondary-container">SM</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-on-surface">Sarah Miller</h4>
+<p class="text-sm text-secondary">Customer since Jan 2023</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="call">call</span>
+<span class="text-sm font-semibold">+1 (555) 092-1288</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="mail">mail</span>
+<span class="text-sm font-semibold">s.miller@example.com</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="credit_card">credit_card</span>
+<span class="text-sm font-semibold">Visa ending in •••• 4492</span>
+</div>
+</div>
+</div>
+<!-- Audit Log Section: Clean Editorial Feed -->
+<div class="col-span-12 md:col-span-6 lg:col-span-8 bg-surface-container p-8 rounded-3xl">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-xl font-bold">Ride Audit Logs</h3>
+<span class="text-xs font-bold text-secondary bg-surface-container-high px-3 py-1 rounded-full uppercase tracking-widest">Live Feed</span>
+</div>
+<div class="space-y-6">
+<div class="flex gap-4 relative">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 bg-primary rounded-full mt-1.5"></div>
+<div class="w-0.5 h-full bg-outline-variant/30 absolute top-4"></div>
+</div>
+<div>
+<p class="text-xs text-secondary font-bold">14:42:01</p>
+<p class="text-sm font-semibold text-on-surface">Ride status updated to <span class="text-primary uppercase">In Transit</span></p>
+<p class="text-xs text-secondary mt-1">Vehicle confirmed crossing Market St &amp; 4th Ave.</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 bg-secondary rounded-full mt-1.5"></div>
+<div class="w-0.5 h-full bg-outline-variant/30 absolute top-4"></div>
+</div>
+<div>
+<p class="text-xs text-secondary font-bold">14:38:12</p>
+<p class="text-sm font-semibold text-on-surface">Pickup Successful</p>
+<p class="text-xs text-secondary mt-1">Driver Marco Rossi verified passenger OTP.</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 bg-secondary rounded-full mt-1.5"></div>
+</div>
+<div>
+<p class="text-xs text-secondary font-bold">14:35:55</p>
+<p class="text-sm font-semibold text-on-surface">Driver Arrived at Location</p>
+<p class="text-xs text-secondary mt-1">Wait time started. Location deviation: 12m.</p>
+</div>
+</div>
+</div>
+<button class="mt-8 text-primary font-bold text-sm flex items-center gap-1 hover:underline">
+                    View Full Audit History
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Contextual Action (FAB suppressed for Details page as per mandate) -->
+</body></html>

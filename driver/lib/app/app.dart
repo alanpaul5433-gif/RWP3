@@ -15,7 +15,7 @@ class DriverApp extends StatelessWidget {
     return BlocProvider<DriverAuthBloc>(
       create: (_) => authBloc..add(const DriverAuthCheckRequested()),
       child: MaterialApp.router(
-        title: 'RWP3 Driver',
+        title: 'RWP Driver',
         debugShowCheckedModeBanner: false,
         theme: DriverTheme.light,
         darkTheme: DriverTheme.dark,

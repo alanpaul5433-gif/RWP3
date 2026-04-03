@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velocity | Parcel Delivery Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-container": "#fcfcff",
+                        "on-secondary-container": "#445a7f",
+                        "surface-container": "#e7f0e5",
+                        "on-tertiary-fixed": "#001e2e",
+                        "surface-dim": "#d4ddd1",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdad8",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#286182",
+                        "secondary-fixed-dim": "#b0c7f1",
+                        "secondary": "#485f84",
+                        "tertiary-fixed-dim": "#98cdf2",
+                        "background": "#f3fcf0",
+                        "primary-fixed-dim": "#ffb3b1",
+                        "surface-container-high": "#e2ebdf",
+                        "surface-bright": "#f3fcf0",
+                        "on-primary-fixed": "#410007",
+                        "surface-tint": "#bb152c",
+                        "secondary-container": "#bbd3fd",
+                        "inverse-on-surface": "#eaf3e7",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#c7e7ff",
+                        "outline": "#8f6f6e",
+                        "on-surface-variant": "#5b403f",
+                        "on-surface": "#161d16",
+                        "on-primary-container": "#fffbff",
+                        "on-background": "#161d16",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#064c6b",
+                        "surface-container-highest": "#dce5d9",
+                        "surface-variant": "#dce5d9",
+                        "primary": "#b7102a",
+                        "secondary-fixed": "#d5e3ff",
+                        "inverse-surface": "#2a322b",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f3fcf0",
+                        "outline-variant": "#e4bebc",
+                        "on-secondary-fixed-variant": "#30476a",
+                        "primary-container": "#db313f",
+                        "on-secondary-fixed": "#001b3c",
+                        "on-primary-fixed-variant": "#92001c",
+                        "tertiary-container": "#447a9c",
+                        "surface-container-low": "#edf6ea",
+                        "inverse-primary": "#ffb3b1"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition {
+            background: linear-gradient(to bottom, #f3fcf0, #e7f0e5);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3fcf0;
+            color: #161d16;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f3fcf0]/70 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#b7102a] hover:opacity-80 transition-opacity">menu</button>
+<span class="text-xl font-black italic tracking-tighter text-[#b7102a] font-['Plus_Jakarta_Sans']">VELOCITY</span>
+</div>
+<div class="h-10 w-10 rounded-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="Professional user profile headshot with soft studio lighting and a clean neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWYYZl0UzLuTr8cl2ln91fQ-H8oeUBGcH1ga-TruEz-M4NFWfUc_CLnY9aO6ZZkoi0dMcMlP-X_bxupVirE1YRS8kCOFoftOukOJ6zhvS_lvLqwh5RC1eP7_74eXJkcrrzqsnzriNnHOFWFsMcUsXRrQxnVHVsL7W9q9VkhWjdTniYu489HYK4AwXIRuUdWAyocLUGN1yf4uLYy6DpNWvGEpc4bD7vT-q9z2z1-kdT4W11yvDT6g49bRAvjK91IQ79s7Vy754bHgAV"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto">
+<!-- Editorial Header -->
+<div class="mb-10">
+<h1 class="font-headline font-extrabold text-[3.5rem] leading-none tracking-tight mb-2 text-on-surface">Parcel Details</h1>
+<p class="font-body text-secondary text-lg">Specify dimensions for accurate logistics.</p>
+</div>
+<!-- Route Section (Map & Locations) -->
+<section class="mb-8 space-y-4">
+<div class="relative h-48 w-full rounded-2xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Minimalist modern digital map with clean aesthetic showing a route between two points in a city" data-location="New York" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA56AZVaXL9DXfHEj_F-rWU51qL3gsipTKKqIFBi0msFEkCYaApRi86X7VEK2TrT5U89M8__XSchYxaoS-B2GYjC0IU3HEeYCewP4GpdeOO6CPGZU2gUM-nLu744orvpVBKydEmAibWpx4OwBI5tJg-WgR8yjmuM5FbgV9FabtOJShOuy7xmgm_qxCKemNYLWAQmJonUIwXomcDEfj2aOR9qySk_Zr_yJXM5KCtjMriJKuMR8QZ9Mr318aU1pmUD7oLROr70eeSwNiy"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/40 to-transparent"></div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-[24px] space-y-6">
+<div class="flex items-start gap-4">
+<div class="flex flex-col items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-primary scale-90" style="font-variation-settings: 'FILL' 1;">circle</span>
+<div class="w-0.5 h-8 bg-outline-variant/30"></div>
+<span class="material-symbols-outlined text-secondary scale-90" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-secondary/60 mb-1">Pickup</p>
+<p class="font-headline font-bold text-on-surface">742 Evergreen Terrace</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-secondary/60 mb-1">Drop-off</p>
+<p class="font-headline font-bold text-on-surface">Springfield Business Park, Dock 4</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Parcel Specification Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+<!-- Weight Card -->
+<div class="bg-surface-container-lowest p-6 rounded-[24px] flex flex-col justify-between">
+<div>
+<label class="font-headline font-bold text-secondary text-sm mb-4 block">Total Weight</label>
+<div class="flex items-baseline gap-2">
+<input class="w-full text-[2.5rem] font-headline font-black bg-transparent border-none p-0 focus:ring-0 placeholder:text-surface-container-highest text-on-surface" placeholder="0.0" type="number"/>
+<span class="text-xl font-bold text-secondary/40">kg</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2 overflow-x-auto pb-2">
+<button class="px-4 py-2 bg-surface-container rounded-full text-xs font-bold text-secondary whitespace-nowrap">Light (&lt; 2kg)</button>
+<button class="px-4 py-2 bg-surface-container rounded-full text-xs font-bold text-secondary whitespace-nowrap">Medium (5kg)</button>
+</div>
+</div>
+<!-- Photo Upload Card -->
+<div class="bg-surface-container-high p-6 rounded-[24px] flex flex-col items-center justify-center border-2 border-dashed border-outline-variant/30 group cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-2 group-hover:scale-110 transition-transform">add_a_photo</span>
+<p class="font-headline font-bold text-on-surface text-center">Upload Photo</p>
+<p class="text-[11px] text-secondary/60 text-center mt-1">Proof of condition required</p>
+</div>
+<!-- Dimensions Card -->
+<div class="md:col-span-2 bg-surface-container-lowest p-6 rounded-[24px]">
+<p class="font-headline font-bold text-secondary text-sm mb-6">Dimensions (H x W x L)</p>
+<div class="grid grid-cols-3 gap-6">
+<div class="space-y-1">
+<input class="w-full bg-surface-container-low border-none rounded-full px-4 py-3 font-headline font-bold text-center focus:ring-2 focus:ring-primary/20" placeholder="0" type="number"/>
+<p class="text-[10px] font-bold text-center text-secondary/40 uppercase">Height (cm)</p>
+</div>
+<div class="space-y-1">
+<input class="w-full bg-surface-container-low border-none rounded-full px-4 py-3 font-headline font-bold text-center focus:ring-2 focus:ring-primary/20" placeholder="0" type="number"/>
+<p class="text-[10px] font-bold text-center text-secondary/40 uppercase">Width (cm)</p>
+</div>
+<div class="space-y-1">
+<input class="w-full bg-surface-container-low border-none rounded-full px-4 py-3 font-headline font-bold text-center focus:ring-2 focus:ring-primary/20" placeholder="0" type="number"/>
+<p class="text-[10px] font-bold text-center text-secondary/40 uppercase">Length (cm)</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Delivery Mode Selection -->
+<section class="mb-24">
+<p class="font-headline font-bold text-secondary text-sm mb-4">Urgency Level</p>
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-lowest p-4 rounded-[20px] ring-2 ring-primary flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<div>
+<p class="font-headline font-bold text-on-surface text-left">Priority</p>
+<p class="text-xs text-secondary/60 text-left">30-45 mins</p>
+</div>
+</button>
+<button class="flex-1 bg-surface-container-lowest p-4 rounded-[20px] flex flex-col gap-2 opacity-60">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+<div>
+<p class="font-headline font-bold text-on-surface text-left">Standard</p>
+<p class="text-xs text-secondary/60 text-left">2-4 hours</p>
+</div>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Action Bar (Contextual FAB replacement for focused task) -->
+<div class="fixed bottom-0 w-full p-6 bg-surface/80 backdrop-blur-md z-40">
+<div class="max-w-2xl mx-auto flex items-center gap-4">
+<div class="flex-1">
+<p class="text-[10px] font-bold text-secondary uppercase tracking-wider">Est. Delivery Fee</p>
+<p class="font-headline font-black text-2xl text-on-surface">$24.50</p>
+</div>
+<button class="bg-primary text-on-primary font-headline font-bold px-8 py-4 rounded-[16px] shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2">
+                Confirm Parcel
+                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar (Hidden on this transactional screen as per Shell Visibility Rule) -->
+<!-- NavigationDrawer (Example access via menu icon) -->
+<div class="fixed inset-0 bg-on-surface/20 backdrop-blur-sm z-[60] hidden" id="drawer">
+<div class="bg-[#f3fcf0] h-full w-[280px] p-6 flex flex-col gap-4 shadow-2xl rounded-r-[12px]">
+<div class="flex items-center gap-3 mb-8">
+<div class="h-12 w-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsL_XhsncreiJpU2XUOAH95nlblxmf1FMrThdJqpCGuY8rliQmxQbJezi1pH7_8wPxNkatj5Q2EGoOFOeorQiblf61jkCw0XW48E2v3u09xUXMyFVndb7sFpqNfIcqQzdtohsjaXbG3obXz94m7wWjacV1hJWjsIn5Rh0QqA69rV9qgymgP-u31TbvP_FVDJNZt4K_Rq5KZgzLNzy8ZXVe_uEN2CVDq-qTMH341RYOWweUF0vKXjWSDBDDT-z48YaUZPlFxR_3cM9I"/>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Velocity Pro</p>
+<p class="text-xs text-secondary">Verified Partner</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-4 p-3 rounded-xl text-on-surface hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium">Ride History</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl text-on-surface hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium">Safety</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl text-on-surface hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium">Payment</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl text-on-surface hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">card_membership</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium">Subscription</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl text-on-surface hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium">Help</span>
+</a>
+</nav>
+</div>
+</div>
+</body></html>

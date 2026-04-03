@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Taxi - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d4ddd1",
+              "secondary-container": "#bbd3fd",
+              "on-primary-fixed": "#410007",
+              "surface-variant": "#dce5d9",
+              "outline-variant": "#e4bebc",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#ffb3b1",
+              "surface-bright": "#f3fcf0",
+              "on-error": "#ffffff",
+              "surface-container-low": "#edf6ea",
+              "primary-fixed-dim": "#ffb3b1",
+              "on-background": "#161d16",
+              "tertiary-fixed": "#c7e7ff",
+              "secondary-fixed": "#d5e3ff",
+              "surface-container-highest": "#dce5d9",
+              "on-primary-fixed-variant": "#92001c",
+              "on-tertiary": "#ffffff",
+              "secondary": "#485f84",
+              "inverse-on-surface": "#eaf3e7",
+              "surface-container-high": "#e2ebdf",
+              "on-primary-container": "#fffbff",
+              "surface": "#f3fcf0",
+              "on-secondary-container": "#445a7f",
+              "tertiary-container": "#447a9c",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#b0c7f1",
+              "on-secondary": "#ffffff",
+              "primary-container": "#db313f",
+              "on-tertiary-fixed-variant": "#064c6b",
+              "on-tertiary-fixed": "#001e2e",
+              "primary-fixed": "#ffdad8",
+              "error-container": "#ffdad6",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "primary": "#b7102a",
+              "inverse-surface": "#2a322b",
+              "background": "#f3fcf0",
+              "tertiary-fixed-dim": "#98cdf2",
+              "tertiary": "#286182",
+              "on-secondary-fixed": "#001b3c",
+              "surface-container": "#e7f0e5",
+              "outline": "#8f6f6e",
+              "on-surface": "#161d16",
+              "on-surface-variant": "#5b403f",
+              "on-tertiary-container": "#fcfcff",
+              "on-secondary-fixed-variant": "#30476a",
+              "surface-tint": "#bb152c"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen overflow-x-hidden">
+<!-- Hero Background Section -->
+<div class="fixed inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 grayscale-[0.5]" data-alt="Modern high-angle view of a sleek red taxi driving through a high-end urban district with glass skyscrapers at twilight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA7gTUpXqtrJnq0hLSsXRY2C_zd5VgdNf30v76HHvr4-ePLQPQL9vHwe1uLfNeV2_J1sfkV0qAl275iwYJ3WxEzkRHw24o3rft4mvGDhyGUOV5j6z0KR0jmtV6sXtPRWBm25hQQPTME6xDbgjsS0tBMkWw_yUJjwdvMfoqAKOnS9w2yv5HSYrzBbIciiuNjectG1GXRgCIO0rtGVLHxBA0GW7xjPd8bgYtwgd7kKFj7ZWVNxfbefi9Fo0bhSN-5aboLMr2vLCph64S"/>
+<div class="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/60 to-surface"></div>
+</div>
+<!-- Main Auth Container -->
+<main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-12">
+<!-- Brand Identity -->
+<header class="mb-12 text-center">
+<h1 class="font-headline font-black tracking-tighter text-5xl text-primary mb-2">Kinetic Taxi</h1>
+<p class="font-body font-medium text-secondary tracking-wide uppercase text-xs">Velocity Editorial Travel</p>
+</header>
+<!-- Login Card -->
+<div class="w-full max-w-md glass-card rounded-[24px] p-8 shadow-[0_12px_24px_rgba(22,29,22,0.06)]">
+<div class="mb-8">
+<h2 class="font-headline font-bold text-3xl tracking-tight mb-2">Welcome back</h2>
+<p class="text-on-surface-variant font-body">Sign in to book your next ride.</p>
+</div>
+<!-- Form -->
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold ml-4 text-on-surface" for="email">Email Address</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-secondary">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="block w-full pl-11 pr-4 py-4 bg-surface-container-high border-none rounded-full focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-300 placeholder:text-stone-400" id="email" name="email" placeholder="alex@kinetic.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center px-4">
+<label class="block text-sm font-semibold text-on-surface" for="password">Password</label>
+<a class="text-xs font-bold text-primary hover:opacity-80 transition-opacity" href="#">Forgot password?</a>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-secondary">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="block w-full pl-11 pr-4 py-4 bg-surface-container-high border-none rounded-full focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-300 placeholder:text-stone-400" id="password" name="password" placeholder="••••••••" type="password"/>
+<div class="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer text-secondary">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</div>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-on-primary font-headline font-bold py-4 rounded-xl shadow-lg hover:brightness-110 active:scale-[0.98] transition-all relative overflow-hidden group" type="submit">
+<span class="relative z-10 flex items-center justify-center gap-2">
+                        Login to Kinetic
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</span>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+</form>
+<!-- Secondary Login Options -->
+<div class="mt-8 space-y-6">
+<div class="relative flex items-center">
+<div class="flex-grow border-t border-outline-variant opacity-30"></div>
+<span class="flex-shrink mx-4 text-xs font-bold text-secondary uppercase tracking-widest">or continue with</span>
+<div class="flex-grow border-t border-outline-variant opacity-30"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Google -->
+<button class="flex items-center justify-center py-3.5 bg-surface-container-lowest border border-outline-variant/20 rounded-xl hover:bg-white transition-colors shadow-sm active:scale-95">
+<img alt="Google logo" class="w-5 h-5 mr-3" data-alt="Official Google multicolored 'G' logo symbol on a transparent background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAadIy_pFe7QJM80QkzgcaWHLfeCh-zoSc2LX9s7qmDmPnt7fSG7G20jWPA7-dEuEd5KnxWd8RNQWixJ8fyzz9XbJSRjeYkZmeJOqRQrtqVM5ApfJoAY4egDKd90e3zwUyNELXbfl1zhRb_LQhw9azwU2oMhqfNby_3civwTerL282NAmXPCbRcm7fvzADD6zAMmn5JNwX1x2s-hdSDeF1M_YHWeAj0hBhOdF28ci_gjUcuXuUGUVn9Nd5Jih6G-QKSJ4tyI9hztLcb"/>
+<span class="font-semibold text-sm">Google</span>
+</button>
+<!-- Apple -->
+<button class="flex items-center justify-center py-3.5 bg-on-background text-white rounded-xl hover:opacity-90 transition-opacity shadow-sm active:scale-95">
+<span class="material-symbols-outlined text-[20px] mr-2" style="font-variation-settings: 'FILL' 1;">ios</span>
+<span class="font-semibold text-sm">Apple</span>
+</button>
+</div>
+<!-- Phone Link -->
+<div class="text-center">
+<button class="font-headline font-bold text-sm text-secondary hover:text-primary transition-colors flex items-center justify-center gap-2 mx-auto">
+<span class="material-symbols-outlined text-[18px]">smartphone</span>
+                        Login with Phone Number
+                    </button>
+</div>
+</div>
+</div>
+<!-- Sign Up Link -->
+<footer class="mt-8 text-center">
+<p class="text-secondary font-medium">
+                Don't have an account? 
+                <a class="text-primary font-bold ml-1 hover:underline underline-offset-4" href="#">Sign up for free</a>
+</p>
+</footer>
+</main>
+<!-- FAB for Quick Support (Optional contextual element) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 bg-white/70 backdrop-blur-md text-primary rounded-full shadow-[0_12px_24px_rgba(0,0,0,0.1)] flex items-center justify-center hover:scale-110 active:scale-90 transition-all">
+<span class="material-symbols-outlined">help_center</span>
+</button>
+</div>
+</body></html>

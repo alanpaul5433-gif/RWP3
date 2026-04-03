@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d4ddd1",
+              "secondary-container": "#bbd3fd",
+              "on-primary-fixed": "#410007",
+              "surface-variant": "#dce5d9",
+              "outline-variant": "#e4bebc",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#ffb3b1",
+              "surface-bright": "#f3fcf0",
+              "on-error": "#ffffff",
+              "surface-container-low": "#edf6ea",
+              "primary-fixed-dim": "#ffb3b1",
+              "on-background": "#161d16",
+              "tertiary-fixed": "#c7e7ff",
+              "secondary-fixed": "#d5e3ff",
+              "surface-container-highest": "#dce5d9",
+              "on-primary-fixed-variant": "#92001c",
+              "on-tertiary": "#ffffff",
+              "secondary": "#485f84",
+              "inverse-on-surface": "#eaf3e7",
+              "surface-container-high": "#e2ebdf",
+              "on-primary-container": "#fffbff",
+              "surface": "#f3fcf0",
+              "on-secondary-container": "#445a7f",
+              "tertiary-container": "#447a9c",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#b0c7f1",
+              "on-secondary": "#ffffff",
+              "primary-container": "#db313f",
+              "on-tertiary-fixed-variant": "#064c6b",
+              "on-tertiary-fixed": "#001e2e",
+              "primary-fixed": "#ffdad8",
+              "error-container": "#ffdad6",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "primary": "#b7102a",
+              "inverse-surface": "#2a322b",
+              "background": "#f3fcf0",
+              "tertiary-fixed-dim": "#98cdf2",
+              "tertiary": "#286182",
+              "on-secondary-fixed": "#001b3c",
+              "surface-container": "#e7f0e5",
+              "outline": "#8f6f6e",
+              "on-surface": "#161d16",
+              "on-surface-variant": "#5b403f",
+              "on-tertiary-container": "#fcfcff",
+              "on-secondary-fixed-variant": "#30476a",
+              "surface-tint": "#bb152c"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full shadow-[0_12px_24px_rgba(22,29,22,0.06)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border-2 border-primary-fixed">
+<img alt="User avatar" data-alt="Close-up portrait of a friendly professional man with a neat beard, soft studio lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDljSr46IL92SGIPolIeWEGXcENc73JBYOMqgFkidrCKVN2MvPPEGIblFpdrBscNQv6TruJUC0OI0OGOIJ0lx7zOwCj8YNBiCybZFxDILtI5dWM9ThUU4EGRZzgWdFZBqTQtkGhk3_mYJLv8jZ3nTP4j_o0IvB_rB12RhnTTn-MwDWk9zTinBLgxM7HIGyC4UfEffr8azKwrd35hpdMUo0AeYLzjMs4tDQHZ-1GfJx6SGo7Hcug57hnKtA8-gspokKOzCUf5Lyoyvht"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline font-black tracking-tighter text-red-700 text-xl">Kinetic Taxi</span>
+<span class="text-[10px] font-bold text-stone-500 uppercase tracking-widest leading-none">Premium Fleet</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-xl flex items-center justify-center text-stone-500 hover:bg-stone-100 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</nav>
+<main class="pt-24 pb-32 px-6 max-w-lg mx-auto">
+<!-- Hero Search Section -->
+<header class="mb-8">
+<h1 class="font-headline text-[2.75rem] font-extrabold tracking-tight leading-[1.1] mb-6 text-on-surface">
+                Ready for your <span class="text-primary italic">next velocity?</span>
+</h1>
+<div class="relative group">
+<div class="absolute left-5 top-1/2 -translate-y-1/2 text-primary">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full h-16 pl-14 pr-6 rounded-full bg-surface-container-lowest border-none shadow-[0_12px_24px_rgba(0,0,0,0.04)] text-lg font-medium placeholder:text-stone-400 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Where to?" type="text"/>
+</div>
+</header>
+<!-- Active Ride Banner: Layered Momentum -->
+<section class="mb-8 relative">
+<div class="bg-primary overflow-hidden rounded-[24px] p-6 relative shadow-[0_20px_40px_rgba(183,16,42,0.15)]">
+<!-- Background Pattern -->
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] absolute -right-8 -bottom-4 rotate-12">local_taxi</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-2">Ongoing Ride</span>
+<h2 class="text-white font-headline text-2xl font-bold tracking-tight">Arriving in 4 mins</h2>
+</div>
+<div class="bg-white/10 backdrop-blur-md rounded-xl p-2 text-white">
+<span class="material-symbols-outlined text-3xl">route</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white/10 backdrop-blur-sm p-4 rounded-2xl border border-white/5">
+<img alt="Tesla Model S" class="w-16 h-10 object-cover rounded-lg shadow-lg" data-alt="Side profile of a sleek white modern electric sedan driving on an urban road during daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz13dDgYwiFV0HBmVPD_LQ0ZRgl1znggPeyX5dKKKtj3UR1jpKON95aYlLH6E_YZsRsGezDwUfzeY3mOsO1nsNic9DWdNdlS9PEhw8-iX7LM8mOnJcR0M6hgBUJH-leLtyu-Jpovyad-ynbz3qBLGHSjzp-nyalOlywVf4HOtcAtOCdNFhwaObxwy2Mr7fzX27x7cFBAp5mEkZiM4-eSbnqa_ELjfYHzJmenwpADH6JdwTlFgUkLoQQ7VwU7PVgYvpDQvyljfkb-Cv"/>
+<div class="flex-1">
+<p class="text-white font-bold text-sm">White Tesla Model S</p>
+<p class="text-white/70 text-xs font-mono tracking-widest">KINETIC-882</p>
+</div>
+<button class="bg-white text-primary px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-tighter shadow-sm hover:scale-105 transition-transform">
+                            Details
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Access Bento Grid -->
+<section class="mb-10">
+<div class="grid grid-cols-4 gap-3">
+<!-- Cab (Focus) -->
+<button class="col-span-2 bg-surface-container-lowest p-6 rounded-[24px] flex flex-col justify-between h-40 shadow-[0_8px_16px_rgba(0,0,0,0.03)] hover:shadow-lg transition-all group overflow-hidden">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+</div>
+<div>
+<p class="font-headline font-extrabold text-xl leading-none mb-1">Cab</p>
+<p class="text-xs text-stone-500 font-medium">Daily city rides</p>
+</div>
+</button>
+<!-- Intercity -->
+<button class="col-span-2 bg-surface-container-lowest p-6 rounded-[24px] flex flex-col justify-between h-40 shadow-[0_8px_16px_rgba(0,0,0,0.03)] hover:shadow-lg transition-all group">
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">distance</span>
+</div>
+<div>
+<p class="font-headline font-extrabold text-xl leading-none mb-1 text-secondary">Intercity</p>
+<p class="text-xs text-stone-500 font-medium">Outstation travel</p>
+</div>
+</button>
+<!-- Parcel -->
+<button class="col-span-2 bg-surface-container-lowest p-6 rounded-[24px] flex flex-col justify-between h-36 shadow-[0_8px_16px_rgba(0,0,0,0.03)] hover:shadow-lg transition-all group">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary-container">
+<span class="material-symbols-outlined text-xl">package_2</span>
+</div>
+<div>
+<p class="font-headline font-bold text-lg leading-none mb-0.5">Parcel</p>
+<p class="text-[11px] text-stone-500 font-medium">Send essentials</p>
+</div>
+</button>
+<!-- Rental -->
+<button class="col-span-2 bg-surface-container-lowest p-6 rounded-[24px] flex flex-col justify-between h-36 shadow-[0_8px_16px_rgba(0,0,0,0.03)] hover:shadow-lg transition-all group">
+<div class="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center text-stone-600">
+<span class="material-symbols-outlined text-xl">car_rental</span>
+</div>
+<div>
+<p class="font-headline font-bold text-lg leading-none mb-0.5">Rentals</p>
+<p class="text-[11px] text-stone-500 font-medium">By the hour</p>
+</div>
+</button>
+</div>
+</section>
+<!-- Promotional Carousel -->
+<section class="mb-10 overflow-hidden -mx-6">
+<div class="px-6 mb-4 flex justify-between items-end">
+<h3 class="font-headline text-xl font-bold tracking-tight">Kinetic Perks</h3>
+<span class="text-xs font-bold text-primary uppercase tracking-tighter">View All</span>
+</div>
+<div class="flex gap-4 overflow-x-auto px-6 no-scrollbar snap-x">
+<!-- Promo Card 1 -->
+<div class="min-w-[85%] snap-center rounded-[20px] bg-secondary-fixed p-6 relative overflow-hidden flex flex-col justify-end h-48">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-white/40 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black text-on-secondary-fixed-variant uppercase">New</span>
+</div>
+<h4 class="font-headline font-black text-3xl leading-[0.9] text-on-secondary-fixed mb-2 tracking-tighter">50% OFF<br/>AIRPORT RIDES</h4>
+<p class="text-sm font-medium text-on-secondary-fixed-variant">Code: SKYHIGH24</p>
+</div>
+<!-- Promo Card 2 -->
+<div class="min-w-[85%] snap-center rounded-[20px] bg-surface-container-highest p-6 relative overflow-hidden flex flex-col justify-end h-48 border border-white">
+<div class="absolute inset-0 z-0">
+<img alt="Luxury interior" class="w-full h-full object-cover opacity-30 grayscale" data-alt="Interior of a high-end luxury car with leather seats and ambient lighting, focus on steering wheel and dashboard details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChr7DJh3gRB1H7IkMrkU9oGqEmnPiEOOcFeECnRDBU5l7_p-fUX4WnsrJNrWbkcFff7S5ffrs_VT4CvguYK7sdY5Lp6mVVtYQqMHXXHM-nXC6pBQdz7X_y4cCz6zq5fdLd_66cOhZ8VdNZzNEZA8-fP7ALDfGCJhutDulHc3MOLZod0Nuf6VyimkohxoKajeTM-VX1b48_dzLCbH95HlO-bBzz0PluaQVzazU35-rMDZ8QnSFvFtr1Tx3RCsPI6o0SN5Q_CUj0MgvF"/>
+</div>
+<div class="relative z-10">
+<h4 class="font-headline font-black text-2xl leading-[1.1] text-on-surface mb-2 tracking-tighter">Upgrade to Kinetic Gold</h4>
+<p class="text-sm font-medium text-on-surface-variant">Priority bookings &amp; Lounge access</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Dynamic Destination Feed -->
+<section class="mb-8">
+<h3 class="font-headline text-xl font-bold tracking-tight mb-4">Saved Locations</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-5 rounded-[20px] bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">home</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Home</p>
+<p class="text-xs text-stone-500">221B Baker Street, London</p>
+</div>
+<span class="material-symbols-outlined text-stone-300">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-5 rounded-[20px] bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">work</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Office</p>
+<p class="text-xs text-stone-500">One Apple Park Way, Cupertino</p>
+</div>
+<span class="material-symbols-outlined text-stone-300">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-white shadow-[0_-8px_20px_rgba(0,0,0,0.04)] rounded-t-xl flex justify-around items-center px-4 pb-6 pt-3">
+<!-- Active Item: Home -->
+<a class="flex flex-col items-center justify-center bg-red-50 text-red-700 rounded-xl px-4 py-1.5 transition-all scale-110 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Inter'] font-medium text-[11px] mt-0.5">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 px-4 py-1.5 transition-all hover:text-red-600 scale-110 active:scale-90" href="#">
+<span class="material-symbols-outlined">local_taxi</span>
+<span class="font-['Inter'] font-medium text-[11px] mt-0.5">Booking</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 px-4 py-1.5 transition-all hover:text-red-600 scale-110 active:scale-90" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-['Inter'] font-medium text-[11px] mt-0.5">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 px-4 py-1.5 transition-all hover:text-red-600 scale-110 active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] font-medium text-[11px] mt-0.5">Profile</span>
+</a>
+</footer>
+</body></html>

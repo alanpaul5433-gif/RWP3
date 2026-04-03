@@ -15,7 +15,7 @@ class AdminApp extends StatelessWidget {
     return BlocProvider<AdminAuthBloc>(
       create: (_) => authBloc..add(const AdminAuthCheckRequested()),
       child: MaterialApp.router(
-        title: 'RWP3 Admin',
+        title: 'RWP Admin',
         debugShowCheckedModeBanner: false,
         theme: AdminTheme.light,
         routerConfig: createAdminRouter(authBloc),

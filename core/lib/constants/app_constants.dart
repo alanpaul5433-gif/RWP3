@@ -1,7 +1,8 @@
 class AppConstants {
   AppConstants._();
 
-  static const String appName = 'RWP3';
+  static const String appName = 'RWP';
+  static const String appFullName = 'Ride with Purpose';
 
   // Payment types
   static const String paymentCash = 'cash';

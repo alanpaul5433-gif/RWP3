@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/core.dart';
-import '../../data/datasources/mock_driver_auth_datasource.dart';
+import '../../data/datasources/driver_auth_datasource.dart';
 
 part 'driver_auth_event.dart';
 part 'driver_auth_state.dart';
 
 class DriverAuthBloc extends Bloc<DriverAuthEvent, DriverAuthState> {
-  final MockDriverAuthDataSource _dataSource;
+  final DriverAuthDataSource _dataSource;
 
-  DriverAuthBloc({required MockDriverAuthDataSource dataSource})
+  DriverAuthBloc({required DriverAuthDataSource dataSource})
       : _dataSource = dataSource,
         super(const DriverAuthInitial()) {
     on<DriverAuthCheckRequested>(_onCheck);

@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
+import 'auth_datasource.dart';
 
-class MockAuthDataSource {
+class MockAuthDataSource implements AuthDataSource {
   UserEntity? _currentUser;
 
   Future<UserEntity> loginWithEmail(String email, String password) async {

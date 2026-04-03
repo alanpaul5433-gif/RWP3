@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Support &amp; Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#98cdf2",
+              "tertiary": "#286182",
+              "secondary-container": "#bbd3fd",
+              "on-primary-container": "#fffbff",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#5b403f",
+              "on-primary-fixed": "#410007",
+              "surface-container-low": "#edf6ea",
+              "outline": "#8f6f6e",
+              "on-primary-fixed-variant": "#92001c",
+              "tertiary-fixed": "#c7e7ff",
+              "on-tertiary-fixed-variant": "#064c6b",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#ffb3b1",
+              "surface-container": "#e7f0e5",
+              "surface-bright": "#f3fcf0",
+              "on-tertiary-fixed": "#001e2e",
+              "surface": "#f3fcf0",
+              "on-error-container": "#93000a",
+              "on-error": "#ffffff",
+              "on-surface": "#161d16",
+              "tertiary-container": "#447a9c",
+              "primary-fixed": "#ffdad8",
+              "secondary-fixed-dim": "#b0c7f1",
+              "error": "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#30476a",
+              "surface-container-high": "#e2ebdf",
+              "secondary-fixed": "#d5e3ff",
+              "on-secondary-container": "#445a7f",
+              "surface-dim": "#d4ddd1",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#dce5d9",
+              "outline-variant": "#e4bebc",
+              "on-background": "#161d16",
+              "primary-fixed-dim": "#ffb3b1",
+              "surface-tint": "#bb152c",
+              "on-secondary-fixed": "#001B3C",
+              "secondary": "#485f84",
+              "background": "#f3fcf0",
+              "primary-container": "#db313f",
+              "surface-variant": "#dce5d9",
+              "primary": "#b7102a",
+              "inverse-surface": "#2a322b",
+              "on-tertiary-container": "#fcfcff",
+              "inverse-on-surface": "#eaf3e7"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .hide-scrollbar::-webkit-scrollbar { display: none; }
+      .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-white">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f3fcf0]/70 dark:bg-[#161d16]/70 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface hover:opacity-80 transition-opacity scale-95 active:duration-100">arrow_back</button>
+<div>
+<h1 class="font-headline font-bold tracking-tighter text-[#b7102a] text-xl">KINETIC</h1>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold uppercase tracking-widest text-secondary opacity-70">Gold Member</p>
+<p class="font-headline font-bold text-sm">Alex Velocity</p>
+</div>
+<img alt="User profile photo" class="w-10 h-10 rounded-full border-2 border-primary" data-alt="close up portrait of a stylish young man with a confident expression in a bright urban setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASDnEiCwafmS-kXbz_Z9Yej1iR79hj-p-V35mnnSHTjnmLjbhJytz1kNqihS_U1f_MVKM5uFLo21EbW2e43RizNMZOFRTOUn3JV5-mULknDeN8HkaNplWGJOe8AiXAduJgBzK408lINN2J16vheGMl3wd1MNeJeNl1lvaMnRqyGj7QKEcRTAHEWl_sRZIRPVf2A1T9Bcecb2zr3nhOrCG579REtkYomn9lRZv4vFpob8hXsDIfbRn3qctmZ4b9vji6_P8kjt93iUOS"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto min-h-screen">
+<!-- Driver Status Card -->
+<section class="mb-8">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_12px_24px_rgba(22,29,22,0.06)] relative overflow-hidden">
+<div class="flex items-center justify-between mb-4 relative z-10">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Driver profile photo" class="w-16 h-16 rounded-xl object-cover" data-alt="friendly male taxi driver smiling wearing a professional uniform in soft sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdIRFvK7oDeRJLpMM_p1kY-Jh0ZSbOTYg7LBAsYCG7KLPe51A7BmCKR6OlLIqIZdFGRblgl52hxx4wNHEkGBOJFzls1N-O4yGh0FsxyfwlGDFUcULBASaFgWZeUNEx07pN7HeiJO0ftZGlRR4rqU4EV7qf-8u2-IIKWI5nohigoNxZXmoK_Mc7-a811HZ7yptJzdlysTPGS28xjxOp5wdkLCHlNzaaCmQnafc91_nWLqioWbmw7Sw4mw-lVLAg7lA8t60d_T480pcW"/>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white text-[10px] px-2 py-1 rounded-full font-bold">4.98 ★</div>
+</div>
+<div>
+<h2 class="font-headline font-bold text-xl leading-tight">Marcus Arrives</h2>
+<p class="text-secondary font-medium flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                In-ride • Tesla Model S
+                            </p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+<!-- Quick Support Grid (Editorial Layout) -->
+<div class="grid grid-cols-2 gap-3 mt-6">
+<button class="bg-surface-container-low hover:bg-primary-fixed-dim transition-colors p-4 rounded-xl text-left flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary">report</span>
+<span class="text-sm font-bold leading-tight">Report an issue</span>
+</button>
+<button class="bg-surface-container-low hover:bg-primary-fixed-dim transition-colors p-4 rounded-xl text-left flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary">edit_location_alt</span>
+<span class="text-sm font-bold leading-tight">Change destination</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Chat Interface -->
+<section class="flex flex-col gap-6">
+<div class="text-center">
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold text-secondary opacity-50">Today 14:32</span>
+</div>
+<!-- Incoming Message -->
+<div class="flex items-end gap-3 max-w-[85%]">
+<img alt="Marcus" class="w-8 h-8 rounded-full mb-1" data-alt="small thumbnail of a smiling male taxi driver" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByOFyOX-LJCG21aw141dcrzx5IkxgVwSWRswa9BO6f2tufjIy0BJCcIQSU-l_GIStxZshUebJjCypT9t_rEJ2PR69BttI-DYvTI7MEvOu0PSIVBv8_Vny7d1qsfxprcg_-IqpGyiw8h8U0xFuPRhl8RdwbkSTkbaW_L5YLyN3UxfKKHB_x4sjac33X2VZORmdNGZf1bLSiaXw4KZC9XzzG_F7O57XhaVKuvB3Y2o3tUJBx67FmJklctpqrXrZb2HZO1xF0ziT-bOhc"/>
+<div class="bg-surface-container text-on-surface px-5 py-4 rounded-2xl rounded-bl-none shadow-sm">
+<p class="text-sm leading-relaxed">Hi Alex, I've arrived at the north entrance. I'm in the white Tesla near the fountain.</p>
+</div>
+</div>
+<!-- Outgoing Message -->
+<div class="flex flex-col items-end gap-2 ml-auto max-w-[85%]">
+<div class="bg-primary text-on-primary px-5 py-4 rounded-2xl rounded-br-none shadow-lg">
+<p class="text-sm leading-relaxed">Perfect, walking out now! Are you okay with the AC on high? It's a bit warm out here.</p>
+</div>
+<span class="text-[10px] font-bold text-secondary opacity-60 mr-2">READ 14:34</span>
+</div>
+<!-- Incoming Message (Short) -->
+<div class="flex items-end gap-3 max-w-[85%]">
+<img alt="Marcus" class="w-8 h-8 rounded-full mb-1" data-alt="small thumbnail of a smiling male taxi driver" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxepV6yGSa8NYZbk8A7y1CFYu-hZYYiOYYhg-fI1lLi-7ZoEfBvwQHXjR0cNzO_yJs9QxrpafVM2qg1Tkbygmyv8F8-lhv9AiN_Nn9zNpwKMrK9qtAIqWAD6-Bw6aFKbmGl4y5PtVBh9jDDT1WOeIblJ5J3qzqOGn0CQYjSUPHOHhlZRayJU-GPQJKd4FQuS7gDXzhtHWqa0HI4cFbzdssn9WVgkYAzzGv1JXPggGaZKUn4YjNf4yQgE7nbHEc2CppUnFyblOOUKVc"/>
+<div class="bg-surface-container text-on-surface px-5 py-4 rounded-2xl rounded-bl-none shadow-sm">
+<p class="text-sm leading-relaxed">Of course! It's already set to 68°F for you. See you in a minute. ❄️</p>
+</div>
+</div>
+</section>
+<!-- Dynamic Typing Indicator (Subtle) -->
+<div class="mt-4 flex items-center gap-2 px-12 opacity-40">
+<div class="flex gap-1">
+<span class="w-1 h-1 bg-on-surface rounded-full"></span>
+<span class="w-1 h-1 bg-on-surface rounded-full"></span>
+<span class="w-1 h-1 bg-on-surface rounded-full"></span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest">Marcus is typing</span>
+</div>
+</main>
+<!-- Message Input Bar (Floating HUD Style) -->
+<div class="fixed bottom-24 left-0 w-full px-6 z-40">
+<div class="max-w-2xl mx-auto flex items-center gap-3 bg-surface-container-highest/80 backdrop-blur-2xl p-2 pl-6 rounded-full shadow-2xl border border-white/10">
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-sm font-medium placeholder:text-secondary/50" placeholder="Message Marcus..." type="text"/>
+<button class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar (Shared Component) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[24px] bg-[#f3fcf0] dark:bg-[#161d16] shadow-[0_-12px_24px_rgba(22,29,22,0.06)] flex justify-around items-center h-20 pb-safe px-4">
+<a class="flex flex-col items-center justify-center text-[#485f84] opacity-60 hover:text-[#b7102a] transition-all" href="#">
+<span class="material-symbols-outlined mb-1">local_taxi</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold">Ride</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#485f84] opacity-60 hover:text-[#b7102a] transition-all" href="#">
+<span class="material-symbols-outlined mb-1">history</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#b7102a] scale-110 hover:text-[#b7102a] transition-all" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold">Support</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#485f84] opacity-60 hover:text-[#b7102a] transition-all" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold">Profile</span>
+</a>
+</nav>
+</body></html>

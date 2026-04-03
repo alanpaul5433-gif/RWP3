@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Taxi - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#d4ddd1",
+                        "secondary-container": "#bbd3fd",
+                        "on-primary-fixed": "#410007",
+                        "surface-variant": "#dce5d9",
+                        "outline-variant": "#e4bebc",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#ffb3b1",
+                        "surface-bright": "#f3fcf0",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#edf6ea",
+                        "primary-fixed-dim": "#ffb3b1",
+                        "on-background": "#161d16",
+                        "tertiary-fixed": "#c7e7ff",
+                        "secondary-fixed": "#d5e3ff",
+                        "surface-container-highest": "#dce5d9",
+                        "on-primary-fixed-variant": "#92001c",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#485f84",
+                        "inverse-on-surface": "#eaf3e7",
+                        "surface-container-high": "#e2ebdf",
+                        "on-primary-container": "#fffbff",
+                        "surface": "#f3fcf0",
+                        "on-secondary-container": "#445a7f",
+                        "tertiary-container": "#447a9c",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#b0c7f1",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#db313f",
+                        "on-tertiary-fixed-variant": "#064c6b",
+                        "on-tertiary-fixed": "#001e2e",
+                        "primary-fixed": "#ffdad8",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary": "#b7102a",
+                        "inverse-surface": "#2a322b",
+                        "background": "#f3fcf0",
+                        "tertiary-fixed-dim": "#98cdf2",
+                        "tertiary": "#286182",
+                        "on-secondary-fixed": "#001b3c",
+                        "surface-container": "#e7f0e5",
+                        "outline": "#8f6f6e",
+                        "on-surface": "#161d16",
+                        "on-surface-variant": "#5b403f",
+                        "on-tertiary-container": "#fcfcff",
+                        "on-secondary-fixed-variant": "#30476a",
+                        "surface-tint": "#bb152c"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/20">
+<!-- Top Navigation Suppression: Onboarding focused journey -->
+<header class="fixed top-0 left-0 right-0 p-6 flex justify-between items-center z-50">
+<div class="text-primary font-headline font-black tracking-tighter text-2xl">
+            Kinetic
+        </div>
+<button class="text-on-surface/60 font-label font-semibold text-sm px-4 py-2 hover:bg-surface-container rounded-full transition-all active:scale-95">
+            Skip
+        </button>
+</header>
+<main class="relative h-screen w-full overflow-hidden flex flex-col">
+<!-- Main Content Area: Horizontal Slider Simulation -->
+<div class="flex-1 flex overflow-x-auto snap-x snap-mandatory hide-scroll">
+<!-- Slide 1: Book a ride -->
+<section class="min-w-full snap-start flex flex-col pt-24 px-6">
+<div class="relative flex-1 flex flex-col justify-center">
+<!-- Editorial Image/Graphic -->
+<div class="relative w-full aspect-square mb-12">
+<div class="absolute inset-0 bg-primary/5 rounded-[40px] rotate-3"></div>
+<img alt="Luxury car on city street" class="absolute inset-0 w-full h-full object-cover rounded-[40px] -rotate-3 shadow-2xl" data-alt="Modern high-end electric sedan driving through a bright minimalist urban environment with glass buildings and soft sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCRW1T8kfAfvxpIm1D_8y_ycRP31jJ0QHZ5MqoDz6KxIBHCpA1SQNMkb3yqNPyBQQ7pi2DwOIEFHdCRB-TVgLY9uk8eLrJpu8F_4slD28xGzXtjMItx_LMb8ouMe26sGT_8iKGp9GK2egLbOudJa5BIFw_Jm5Hd13RoP9uot_gILKBKarHjbbxqoH82a6TrfCcCaQswocrXO4_AjBywYhCqZeJh_769SGXs3nmnFFkiC1FSruvI9wT1Z7kicT3ipCsRdd_HudxmoVq"/>
+<!-- Floating HUD elements -->
+<div class="absolute -bottom-6 -right-2 bg-surface-container-lowest p-4 rounded-xl shadow-[0_12px_24px_rgba(22,29,22,0.06)] border border-outline-variant/15 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_taxi</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface/40 font-bold">Nearest Ride</p>
+<p class="text-sm font-headline font-bold text-on-surface">2 mins away</p>
+</div>
+</div>
+</div>
+<!-- Typography Content -->
+<div class="space-y-4">
+<h1 class="text-4xl md:text-6xl font-headline font-extrabold tracking-tight text-on-surface leading-[0.95]">
+                            Book a ride <br/><span class="text-primary">Anywhere.</span>
+</h1>
+<p class="text-on-surface/70 text-lg leading-relaxed max-w-xs">
+                            From daily commutes to intercity travel and parcel deliveries.
+                        </p>
+<!-- Bento-ish Grid for features -->
+<div class="grid grid-cols-2 gap-3 mt-8">
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary text-xl">schedule</span>
+<span class="text-sm font-semibold">Daily/Local</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary text-xl">distance</span>
+<span class="text-sm font-semibold">Intercity</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Slide 2: Professional Drivers -->
+<section class="min-w-full snap-start flex flex-col pt-24 px-6">
+<div class="relative flex-1 flex flex-col justify-center">
+<div class="relative w-full aspect-square mb-12">
+<div class="absolute inset-0 bg-secondary/5 rounded-[40px] -rotate-6"></div>
+<img alt="Professional driver smiling" class="absolute inset-0 w-full h-full object-cover rounded-[40px] rotate-2 shadow-2xl" data-alt="Professional chauffeur in a crisp white shirt standing beside a luxury black car, warm morning lighting, friendly professional atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQQ_APAcUzkzXOc24VPZ91sSfJB3vwcuUNlM2pS9FrHLejPMY_Xqbe9Jc-7yNk_3L_h1TZ48fY39Kw4o92xn3EbH4_Dx7ICdStSpv5Pj3oNnsqhu8kZLSc4eTb_Zw5giw6eWWQkWbKwMR3EONfZKWY_hK4OcXggB04Wb9OjLNDqGtAgfuIYHGDPA4Hieaz9nmu-MJUML3ThhfZi_rZS-PfCRUbxd60ydHPWlMVPZpl0EcrntDNfoWZNoptUhri1RwB0jT-VemrKlzx"/>
+<div class="absolute top-6 -left-4 bg-surface-container-lowest py-2 px-4 rounded-full shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-green-600 text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-xs font-bold text-on-surface">Verified Partner</span>
+</div>
+</div>
+<div class="space-y-4">
+<h1 class="text-4xl md:text-6xl font-headline font-extrabold tracking-tight text-on-surface leading-[0.95]">
+                            Professional <br/><span class="text-primary">Drivers.</span>
+</h1>
+<p class="text-on-surface/70 text-lg leading-relaxed max-w-xs">
+                            Travel with peace of mind. All our partners are verified and highly trained.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Slide 3: Secure Payments -->
+<section class="min-w-full snap-start flex flex-col pt-24 px-6">
+<div class="relative flex-1 flex flex-col justify-center">
+<div class="relative w-full aspect-[4/5] mb-12">
+<div class="absolute inset-0 bg-surface-container-high rounded-[40px]"></div>
+<!-- Asymmetric Card Layout for Payment Types -->
+<div class="absolute inset-0 p-8 flex flex-col justify-center gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-xl transform -translate-x-4">
+<div class="flex justify-between items-start mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">account_balance_wallet</span>
+<div class="text-right">
+<p class="text-[10px] font-bold text-on-surface/40 uppercase tracking-widest">Kinetic Wallet</p>
+<p class="text-xl font-bold font-headline">$1,240.00</p>
+</div>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full w-2/3 bg-primary"></div>
+</div>
+</div>
+<div class="bg-primary p-6 rounded-2xl shadow-xl transform translate-x-4 text-white">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">contactless</span>
+</div>
+<div>
+<p class="text-xs font-medium text-white/60">One-tap Payment</p>
+<p class="text-sm font-bold">Stripe Enabled</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h1 class="text-4xl md:text-6xl font-headline font-extrabold tracking-tight text-on-surface leading-[0.95]">
+                            Secure <br/><span class="text-primary">Payments.</span>
+</h1>
+<p class="text-on-surface/70 text-lg leading-relaxed max-w-xs">
+                            Multiple ways to pay including Cash, Kinetic Wallet, or Credit Cards.
+                        </p>
+</div>
+</div>
+</section>
+</div>
+<!-- Sticky Footer Navigation -->
+<footer class="p-6 pb-12 flex flex-col gap-8 bg-surface">
+<!-- Pagination Dots -->
+<div class="flex gap-2">
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-primary/20"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-primary/20"></div>
+</div>
+<div class="flex items-center justify-between gap-4">
+<div class="flex-1">
+<button class="w-full h-14 bg-primary text-on-primary font-headline font-bold text-lg rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-all">
+                        Next
+                        <span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+</div>
+</div>
+</footer>
+</main>
+<!-- Background Elements for Editorial feel -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 opacity-30 overflow-hidden">
+<div class="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] bg-primary-fixed blur-[120px] rounded-full"></div>
+<div class="absolute -bottom-[10%] -left-[10%] w-[50%] h-[50%] bg-secondary-container blur-[100px] rounded-full"></div>
+</div>
+</body></html>

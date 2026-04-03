@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'features/auth/data/datasources/mock_auth_datasource.dart';
+import 'features/auth/data/datasources/auth_datasource.dart';
+import 'features/auth/data/datasources/firebase_auth_datasource.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/usecases/login_with_email.dart';
@@ -88,7 +89,7 @@ Future<void> init() async {
   // ========================
 
   // BLoC
-  sl.registerFactory(() => AuthBloc(
+  sl.registerLazySingleton(() => AuthBloc(
         loginWithEmail: sl(),
         signupWithEmail: sl(),
         resetPassword: sl(),
@@ -108,8 +109,8 @@ Future<void> init() async {
     () => AuthRepositoryImpl(dataSource: sl()),
   );
 
-  // DataSource (Mock — swap to Firebase later)
-  sl.registerLazySingleton(() => MockAuthDataSource());
+  // DataSource (Firebase Auth + Firestore)
+  sl.registerLazySingleton<AuthDataSource>(() => FirebaseAuthDataSource());
 
   // ========================
   // Profile Feature

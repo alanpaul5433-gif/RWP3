@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
 import '../../domain/repositories/auth_repository.dart';
-import '../datasources/mock_auth_datasource.dart';
+import '../datasources/auth_datasource.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final MockAuthDataSource dataSource;
+  final AuthDataSource dataSource;
 
   const AuthRepositoryImpl({required this.dataSource});
 

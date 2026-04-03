@@ -4,8 +4,15 @@ import 'package:go_router/go_router.dart';
 import 'package:core/core.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -13,150 +20,42 @@ class HomePage extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppConstants.appName),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined),
-            tooltip: 'Notifications',
-            onPressed: () {
-              // TODO: Navigate to notifications
-            },
-          ),
-        ],
-      ),
-      drawer: Drawer(
-        child: BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) {
-            final user = state is Authenticated ? state.user : null;
-            return ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                DrawerHeader(
-                  decoration: BoxDecoration(color: colorScheme.primary),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundColor: colorScheme.onPrimary,
-                        child: Icon(
-                          Icons.person,
-                          size: 32,
-                          color: colorScheme.primary,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        user?.fullName ?? 'Guest',
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          color: colorScheme.onPrimary,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        user?.email ?? '',
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onPrimary.withValues(alpha: 0.8),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                _DrawerItem(Icons.history, 'Ride History', '/ride-history'),
-                _DrawerItem(Icons.account_balance_wallet_outlined, 'Wallet', '/wallet'),
-                _DrawerItem(Icons.local_offer_outlined, 'Coupons', '/coupons'),
-                _DrawerItem(Icons.stars_outlined, 'Loyalty Points', '/loyalty'),
-                _DrawerItem(Icons.card_giftcard, 'Referral', '/referral'),
-                _DrawerItem(Icons.chat_bubble_outline, 'Messages', '/inbox'),
-                _DrawerItem(Icons.notifications_outlined, 'Notifications', '/notifications'),
-                _DrawerItem(Icons.contact_phone_outlined, 'Emergency Contacts', '/emergency-contacts'),
-                _DrawerItem(Icons.support_agent, 'Support', '/support'),
-                _DrawerItem(Icons.person_outlined, 'Profile', '/profile'),
-                _DrawerItem(Icons.settings_outlined, 'Settings', '/settings'),
-                const Divider(),
-                ListTile(
-                  leading: Icon(Icons.logout, color: colorScheme.error),
-                  title: Text('Logout',
-                      style: TextStyle(color: colorScheme.error)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    context.read<AuthBloc>().add(const LogoutRequested());
-                  },
-                ),
-              ],
-            );
-          },
+      body: _currentIndex == 0
+          ? _HomeContent()
+          : _currentIndex == 1
+              ? _PlaceholderTab('Booking')
+              : _currentIndex == 2
+                  ? _PlaceholderTab('Wallet')
+                  : _PlaceholderTab('Profile'),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.06),
+              blurRadius: 16,
+              offset: const Offset(0, -4),
+            ),
+          ],
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Greeting
-            BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
-                final name = state is Authenticated
-                    ? state.user.fullName.split(' ').first
-                    : 'there';
-                return Text(
-                  'Hello, $name',
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: 4),
-            Text(
-              'Where would you like to go?',
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.6),
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Ride type grid
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                children: [
-                  _RideTypeCard(
-                    icon: Icons.local_taxi_rounded,
-                    label: 'Cab Ride',
-                    subtitle: 'Local rides',
-                    color: colorScheme.primary,
-                    onTap: () => context.push('/select-location'),
-                  ),
-                  _RideTypeCard(
-                    icon: Icons.route_rounded,
-                    label: 'Intercity',
-                    subtitle: 'Long distance',
-                    color: colorScheme.secondary,
-                    onTap: () {},
-                  ),
-                  _RideTypeCard(
-                    icon: Icons.inventory_2_outlined,
-                    label: 'Parcel',
-                    subtitle: 'Send packages',
-                    color: const Color(0xFFE65100),
-                    onTap: () {},
-                  ),
-                  _RideTypeCard(
-                    icon: Icons.access_time_rounded,
-                    label: 'Rental',
-                    subtitle: 'Hourly / daily',
-                    color: const Color(0xFF2E7D32),
-                    onTap: () {},
-                  ),
-                ],
-              ),
-            ),
+        child: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (i) {
+            if (i == 1) {
+              context.push('/select-location');
+            } else if (i == 2) {
+              context.push('/wallet');
+            } else if (i == 3) {
+              context.push('/profile');
+            } else {
+              setState(() => _currentIndex = i);
+            }
+          },
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.local_taxi_rounded), label: 'Booking'),
+            BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_rounded), label: 'Wallet'),
+            BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: 'Profile'),
           ],
         ),
       ),
@@ -164,80 +63,459 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _DrawerItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String route;
-  const _DrawerItem(this.icon, this.label, this.route);
-
+class _HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(label),
-      onTap: () {
-        Navigator.pop(context);
-        context.push(route);
-      },
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // ==================== Top Bar ====================
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+              child: Row(
+                children: [
+                  Icon(Icons.local_taxi_rounded, color: colorScheme.primary, size: 26),
+                  const SizedBox(width: 8),
+                  Text(
+                    AppConstants.appName,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      color: colorScheme.primary,
+                    ),
+                  ),
+                  const Spacer(),
+                  _IconBtn(Icons.notifications_outlined, () => context.push('/notifications')),
+                  const SizedBox(width: 8),
+                  BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      return GestureDetector(
+                        onTap: () => context.push('/profile'),
+                        child: CircleAvatar(
+                          radius: 18,
+                          backgroundColor: colorScheme.primary.withValues(alpha: 0.1),
+                          child: Icon(Icons.person, size: 20, color: colorScheme.primary),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // ==================== Greeting ====================
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Ready for your',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.w800,
+                          color: colorScheme.onSurface,
+                          height: 1.2,
+                        ),
+                      ),
+                      Text(
+                        'next ride?',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.w800,
+                          color: colorScheme.primary,
+                          fontStyle: FontStyle.italic,
+                          height: 1.2,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // ==================== Search Bar ====================
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: GestureDetector(
+                onTap: () => context.push('/select-location'),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.04),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search, color: colorScheme.onSurface.withValues(alpha: 0.4)),
+                      const SizedBox(width: 12),
+                      Text(
+                        'Where to?',
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.4),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // ==================== Arriving Card ====================
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: const Color(0xFFE8E5E0)),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: colorScheme.primary.withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        'CONNECTED',
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 10,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Arriving in 4 mins',
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            'White Tesla Model S',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: colorScheme.onSurface.withValues(alpha: 0.5),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF2E7D32).withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Icon(Icons.directions_car, color: Color(0xFF2E7D32), size: 20),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // ==================== Ride Type Grid ====================
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  _RideTypeChip(
+                    icon: Icons.local_taxi_rounded,
+                    label: 'Cab',
+                    onTap: () => context.push('/select-location'),
+                  ),
+                  const SizedBox(width: 12),
+                  _RideTypeChip(
+                    icon: Icons.route_rounded,
+                    label: 'Intercity',
+                    onTap: () => context.push('/intercity'),
+                  ),
+                  const SizedBox(width: 12),
+                  _RideTypeChip(
+                    icon: Icons.inventory_2_outlined,
+                    label: 'Parcel',
+                    onTap: () => context.push('/parcel'),
+                  ),
+                  const SizedBox(width: 12),
+                  _RideTypeChip(
+                    icon: Icons.access_time_rounded,
+                    label: 'Rentals',
+                    onTap: () => context.push('/rental'),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 28),
+
+            // ==================== Perks / Promo ====================
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'RWP Perks',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            SizedBox(
+              height: 140,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                children: [
+                  _PromoCard(
+                    title: '50% OFF',
+                    subtitle: 'AIRPORT RIDES',
+                    code: 'SKY1HALF9',
+                    color: colorScheme.primary,
+                  ),
+                  const SizedBox(width: 12),
+                  _PromoCard(
+                    title: 'Up to \$15',
+                    subtitle: 'OFF FIRST RIDE',
+                    code: 'NEWUSER15',
+                    color: const Color(0xFF1A1A1A),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 28),
+
+            // ==================== Saved Locations ====================
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'Saved Locations',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _SavedLocationTile(
+              icon: Icons.home_rounded,
+              label: 'Home',
+              address: '124 Elm Street',
+            ),
+            _SavedLocationTile(
+              icon: Icons.work_rounded,
+              label: 'Work',
+              address: '456 Oak Avenue',
+            ),
+
+            const SizedBox(height: 24),
+          ],
+        ),
+      ),
     );
   }
 }
 
-class _RideTypeCard extends StatelessWidget {
+class _IconBtn extends StatelessWidget {
   final IconData icon;
-  final String label;
-  final String subtitle;
-  final Color color;
   final VoidCallback onTap;
-
-  const _RideTypeCard({
-    required this.icon,
-    required this.label,
-    required this.subtitle,
-    required this.color,
-    required this.onTap,
-  });
+  const _IconBtn(this.icon, this.onTap);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Icon(icon, size: 20, color: const Color(0xFF1A1A1A)),
+      ),
+    );
+  }
+}
 
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
+class _RideTypeChip extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  const _RideTypeChip({required this.icon, required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Expanded(
+      child: GestureDetector(
         onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(20),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: const Color(0xFFE8E5E0)),
+          ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.1),
+                  color: colorScheme.primary.withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(icon, color: color, size: 28),
+                child: Icon(icon, color: colorScheme.primary, size: 22),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
               Text(
                 label,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                subtitle,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-                ),
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _PromoCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final String code;
+  final Color color;
+  const _PromoCard({required this.title, required this.subtitle, required this.code, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white,
+                    ),
+              ),
+              Text(
+                subtitle,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: Colors.white.withValues(alpha: 0.7),
+                      letterSpacing: 0.5,
+                    ),
+              ),
+            ],
+          ),
+          Text(
+            'Code: $code',
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: Colors.white.withValues(alpha: 0.6),
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SavedLocationTile extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String address;
+  const _SavedLocationTile({required this.icon, required this.label, required this.address});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5F2ED),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, size: 20, color: const Color(0xFF1A1A1A)),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(label, style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600)),
+                  Text(
+                    address,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.chevron_right, color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PlaceholderTab extends StatelessWidget {
+  final String title;
+  const _PlaceholderTab(this.title);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(title, style: Theme.of(context).textTheme.headlineMedium),
     );
   }
 }

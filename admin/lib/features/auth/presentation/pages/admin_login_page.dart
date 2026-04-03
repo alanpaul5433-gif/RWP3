@@ -95,6 +95,19 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                           );
                         },
                       ),
+                      const SizedBox(height: 12),
+                      OutlinedButton(
+                        onPressed: () {
+                          _emailController.text = 'admin@rwp.com';
+                          _passwordController.text = 'demo123';
+                          _onLogin();
+                        },
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          Icon(Icons.play_circle_outline, size: 18, color: colorScheme.primary),
+                          const SizedBox(width: 8),
+                          Text('Demo Login', style: TextStyle(color: colorScheme.primary)),
+                        ]),
+                      ),
                     ],
                   ),
                 ),

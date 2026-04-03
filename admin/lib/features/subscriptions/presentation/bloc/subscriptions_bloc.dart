@@ -13,14 +13,38 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
       : _dataSource = dataSource,
         super(const SubscriptionsInitial()) {
     on<SubscriptionsLoadRequested>(_onLoad);
+    on<SubscriptionCreateRequested>(_onCreate);
+    on<SubscriptionUpdateRequested>(_onUpdate);
+    on<SubscriptionDeleteRequested>(_onDelete);
   }
 
   Future<void> _onLoad(SubscriptionsLoadRequested event, Emitter<SubscriptionsState> emit) async {
     emit(const SubscriptionsLoading());
+    try { emit(SubscriptionsLoaded(await _dataSource.getPlans())); }
+    catch (e) { emit(SubscriptionsError(e.toString())); }
+  }
+
+  Future<void> _onCreate(SubscriptionCreateRequested event, Emitter<SubscriptionsState> emit) async {
+    emit(const SubscriptionsLoading());
     try {
+      await _dataSource.createPlan(event.plan);
       emit(SubscriptionsLoaded(await _dataSource.getPlans()));
-    } catch (e) {
-      emit(SubscriptionsError(e.toString()));
-    }
+    } catch (e) { emit(SubscriptionsError(e.toString())); }
+  }
+
+  Future<void> _onUpdate(SubscriptionUpdateRequested event, Emitter<SubscriptionsState> emit) async {
+    emit(const SubscriptionsLoading());
+    try {
+      await _dataSource.updatePlan(event.plan);
+      emit(SubscriptionsLoaded(await _dataSource.getPlans()));
+    } catch (e) { emit(SubscriptionsError(e.toString())); }
+  }
+
+  Future<void> _onDelete(SubscriptionDeleteRequested event, Emitter<SubscriptionsState> emit) async {
+    emit(const SubscriptionsLoading());
+    try {
+      await _dataSource.deletePlan(event.planId);
+      emit(SubscriptionsLoaded(await _dataSource.getPlans()));
+    } catch (e) { emit(SubscriptionsError(e.toString())); }
   }
 }

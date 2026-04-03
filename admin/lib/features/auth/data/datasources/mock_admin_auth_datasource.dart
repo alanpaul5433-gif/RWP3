@@ -5,8 +5,9 @@ class MockAdminAuthDataSource {
 
   Future<AdminEntity> loginWithEmail(String email, String password) async {
     await Future.delayed(const Duration(milliseconds: 800));
-    if (email != 'admin@rwp3.com' || password.length < 6) {
-      throw const AuthException('wrong-password');
+    final validEmails = ['admin@rwp3.com', 'admin@rwp.com'];
+    if (!validEmails.contains(email.toLowerCase()) || password.length < 6) {
+      throw const AuthException('Invalid admin credentials');
     }
     _currentAdmin = AdminEntity(
       id: 'admin_1',

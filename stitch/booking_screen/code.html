@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d4ddd1",
+              "secondary-container": "#bbd3fd",
+              "on-primary-fixed": "#410007",
+              "surface-variant": "#dce5d9",
+              "outline-variant": "#e4bebc",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#ffb3b1",
+              "surface-bright": "#f3fcf0",
+              "on-error": "#ffffff",
+              "surface-container-low": "#edf6ea",
+              "primary-fixed-dim": "#ffb3b1",
+              "on-background": "#161d16",
+              "tertiary-fixed": "#c7e7ff",
+              "secondary-fixed": "#d5e3ff",
+              "surface-container-highest": "#dce5d9",
+              "on-primary-fixed-variant": "#92001c",
+              "on-tertiary": "#ffffff",
+              "secondary": "#485f84",
+              "inverse-on-surface": "#eaf3e7",
+              "surface-container-high": "#e2ebdf",
+              "on-primary-container": "#fffbff",
+              "surface": "#f3fcf0",
+              "on-secondary-container": "#445a7f",
+              "tertiary-container": "#447a9c",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#b0c7f1",
+              "on-secondary": "#ffffff",
+              "primary-container": "#db313f",
+              "on-tertiary-fixed-variant": "#064c6b",
+              "on-tertiary-fixed": "#001e2e",
+              "primary-fixed": "#ffdad8",
+              "error-container": "#ffdad6",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "primary": "#b7102a",
+              "inverse-surface": "#2a322b",
+              "background": "#f3fcf0",
+              "tertiary-fixed-dim": "#98cdf2",
+              "tertiary": "#286182",
+              "on-secondary-fixed": "#001b3c",
+              "surface-container": "#e7f0e5",
+              "outline": "#8f6f6e",
+              "on-surface": "#161d16",
+              "on-surface-variant": "#5b403f",
+              "on-tertiary-container": "#fcfcff",
+              "on-secondary-fixed-variant": "#30476a",
+              "surface-tint": "#bb152c"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .map-gradient {
+            background: linear-gradient(180deg, rgba(243, 252, 240, 0) 0%, rgba(243, 252, 240, 1) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl flex justify-between items-center px-6 py-4 shadow-[0_12px_24px_rgba(22,29,22,0.06)]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a smiling young man with styled hair and light stubble, soft studio lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDltX5ecIN1ndU1F4Ol4LtnLsx9-87J_teP-dMy0P3G5hs9wcrIpjuObFYcVObKOLpgAPcRfD9b43lvcpwL4wg7TrAXDiV4QaUOsiZgfksmnAuu5wp8S-L3z9sxBwWvLpcmiJJkrS6g7kh7JWh1tocvGzFt4JF6eBpk8q-eoLhAXDs1cJh00RLiTspHQQDOjiTrPAL9gFUwoHzxp_4eTbEOvFRiDDJ_mQbYf71ynTDRCAcR66bhhKGgVhfdkNLLGA287pc51yq8eGVm"/>
+</div>
+<span class="font-['Plus_Jakarta_Sans'] font-black tracking-tighter text-red-700 text-xl">Kinetic Taxi</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8">
+<a class="text-stone-500 hover:bg-stone-100 transition-colors px-3 py-1 rounded-lg font-medium" href="#">Home</a>
+<a class="text-red-700 font-bold px-3 py-1 rounded-lg" href="#">Booking</a>
+<a class="text-stone-500 hover:bg-stone-100 transition-colors px-3 py-1 rounded-lg font-medium" href="#">Wallet</a>
+<a class="text-stone-500 hover:bg-stone-100 transition-colors px-3 py-1 rounded-lg font-medium" href="#">Profile</a>
+</nav>
+<button class="material-symbols-outlined text-stone-600 p-2 hover:bg-stone-100 rounded-full transition-all">notifications</button>
+</div>
+</header>
+<main class="relative pt-16 pb-24 md:pb-0 h-screen overflow-hidden flex flex-col md:flex-row">
+<!-- Interactive Map Background (Canvas) -->
+<div class="absolute inset-0 z-0 h-full w-full">
+<div class="relative w-full h-full">
+<img class="w-full h-full object-cover grayscale brightness-[0.9] contrast-[1.1]" data-alt="High-angle cinematic shot of a stylized city map with glowing transit lines, deep blacks and vibrant neon accents" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCukZec2nRDbCelm-KNFdT_OfrxfAId0CTXkL-Rwci7CdTphspwNtSntw2kMK3woHq3KbyCdvbyHvFdWFp3Dz-Ok0ZxfdL3dOgZ1d7fGQF1ITB7ByhEvuZX0cMTqMQrp2mSGNX5IfWoPEhVWabzJn4TNrb9ybyoH9Llob3xcywrw6EXaGH3SCeRXUihKJZ3K0wfrc4wEeXupOydTuJ0do_FPIjjrHVkq0zjHaMZQNomy0s-yO8QkV69HlQ7UnBGT-iZ-HPf7i4IGX9Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<!-- Map UI Elements (Floating HUD) -->
+<div class="absolute right-6 top-24 flex flex-col gap-3">
+<button class="w-12 h-12 bg-white/80 backdrop-blur-xl rounded-full shadow-lg flex items-center justify-center text-on-surface hover:bg-white transition-all scale-95 active:opacity-80">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<button class="w-12 h-12 bg-white/80 backdrop-blur-xl rounded-full shadow-lg flex items-center justify-center text-on-surface hover:bg-white transition-all scale-95 active:opacity-80">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-12 h-12 bg-white/80 backdrop-blur-xl rounded-full shadow-lg flex items-center justify-center text-on-surface hover:bg-white transition-all scale-95 active:opacity-80">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Booking Panel (Editorial Overlay) -->
+<section class="relative z-10 w-full md:w-[480px] h-full flex flex-col pointer-events-none p-6 md:p-8">
+<div class="mt-auto md:mt-0 pointer-events-auto bg-surface-container-lowest/95 backdrop-blur-2xl rounded-3xl shadow-[0_24px_48px_rgba(22,29,22,0.12)] flex flex-col overflow-hidden max-h-[751px] md:max-h-none border border-white/20">
+<!-- Search Inputs Section -->
+<div class="p-6 space-y-4">
+<h2 class="text-3xl font-['Plus_Jakarta_Sans'] font-extrabold tracking-tight text-on-surface leading-tight">Where to?</h2>
+<div class="relative space-y-3">
+<!-- Origin -->
+<div class="group flex items-center gap-4 bg-surface-container-high rounded-full px-5 py-3.5 transition-all focus-within:bg-white focus-within:shadow-lg">
+<span class="material-symbols-outlined text-primary text-xl">radio_button_checked</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-medium placeholder:text-stone-400" placeholder="Pickup location" type="text" value="The Ritz-Carlton, Downtown"/>
+</div>
+<!-- Connector Line -->
+<div class="absolute left-7 top-10 w-[2px] h-8 bg-outline-variant/30"></div>
+<!-- Destination -->
+<div class="group flex items-center gap-4 bg-surface-container-high rounded-full px-5 py-3.5 transition-all focus-within:bg-white focus-within:shadow-lg">
+<span class="material-symbols-outlined text-secondary text-xl">location_on</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-medium placeholder:text-stone-400" placeholder="Enter destination" type="text"/>
+</div>
+<!-- Add Stop Button -->
+<button class="flex items-center gap-2 text-primary font-bold text-sm px-2 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+<span>Add Stop</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto px-6 pb-6 space-y-8 custom-scrollbar">
+<!-- Vehicle Types (Asymmetric Layout) -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="text-sm font-bold uppercase tracking-widest text-stone-500">Select Ride</h3>
+<span class="text-xs font-bold text-primary">RECOMMENDED</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Mini -->
+<div class="relative group cursor-pointer">
+<div class="p-4 bg-surface rounded-2xl border-2 border-transparent group-hover:border-primary/20 transition-all flex flex-col gap-3">
+<div class="w-full flex justify-between">
+<span class="material-symbols-outlined text-stone-400">person</span>
+<span class="font-bold text-lg">$12.50</span>
+</div>
+<img class="w-32 self-end transform group-hover:scale-105 transition-transform" data-alt="Modern compact white electric hatchback car isolated on studio background, sleek automotive design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCieOusLlI5lVXQcA5YdcMgxtUyEsuu128ZBT_zepsaITUng7qG_B3UT__FhX-wEgeYy_3VlNy1QkimDomm_ls8S4QsCJ-mR7Z2ZpXP9ZAw87dBHPB_S5VUW0GnB5q2t2ReExNH1iAiz0Mny8gNjnHedpIcNqFZ_PDONUkR-ZhQ-aAFcnqynNP27jciMCGo6pSFgydw67WY-D7-5RmBu1WMBj-c0R-uId4iDWQ2rvMKmQ3Pl5V4OcqNJXG9s-Y25gdwXn24U1kMZgbt"/>
+<div class="mt-2">
+<p class="font-bold text-on-surface">Mini</p>
+<p class="text-[11px] text-stone-500">4 min away</p>
+</div>
+</div>
+</div>
+<!-- Sedan (Active) -->
+<div class="relative group cursor-pointer">
+<div class="p-4 bg-primary/5 rounded-2xl border-2 border-primary transition-all flex flex-col gap-3">
+<div class="w-full flex justify-between">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-bold text-lg text-primary">$18.20</span>
+</div>
+<img class="w-32 self-end transform group-hover:scale-105 transition-transform" data-alt="Luxury black executive sedan with chrome details, front three-quarter view, high-end professional vehicle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNXO_pmmgTJG-_ZQji2Px3zsRewL2NtSwMWjkyYPKuY4CKCrfO3ZLf2OAyayxLmCgW5dgDFCnqsR1CBx4WhbBBSzRvWvMRVRO05b_5Oj4R2q9tju8-kaFFJYThxEw6plRrKQWupPEfapKaS_R-xc02X-NnL2kXamOjnYKmKEJ73md5-gKLv-Ux1I0aDJSqN-zb_RRtXgxFtP3i8pzw5tibF4bRaMCf7Uqb8QpCFmiVhv29mLi3auR00vpZP5Yubvubv_-DTNui-w0y"/>
+<div class="mt-2">
+<p class="font-bold text-primary">Sedan</p>
+<p class="text-[11px] text-primary/70">2 min away</p>
+</div>
+<div class="absolute -top-2 -right-2 bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</div>
+</div>
+<!-- SUV -->
+<div class="relative group cursor-pointer">
+<div class="p-4 bg-surface rounded-2xl border-2 border-transparent group-hover:border-primary/20 transition-all flex flex-col gap-3">
+<div class="w-full flex justify-between">
+<span class="material-symbols-outlined text-stone-400">group</span>
+<span class="font-bold text-lg">$24.00</span>
+</div>
+<img class="w-32 self-end transform group-hover:scale-105 transition-transform" data-alt="Large silver modern SUV with tinted windows, rugged yet premium appearance for families" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaFJFMMRhMyiwgv3I2UVswEKYYVrcyxYB7aSJruu4UxbxaNVqqvz3nua1eQC1g7GiHK9SsQVGXqrOkwNwe9vRT-czU3RN3LigqeJ5E4s6g_j7tRxd7_WvffW6F6m5YztFpI_okUyLPtHBQz-O71rDOXf-nPXl47a_9wm5jwVayl3UlkyxYo8-p3vsCI1dmTailnpY5DC13bNbKBw1xSN55VezTWhBBAb3wsW-QHTMLEZwK2P2-LQPzt7LkNQIcaa39Zsl7EUFvwgLD"/>
+<div class="mt-2">
+<p class="font-bold text-on-surface">SUV</p>
+<p class="text-[11px] text-stone-500">6 min away</p>
+</div>
+</div>
+</div>
+<!-- Luxury -->
+<div class="relative group cursor-pointer">
+<div class="p-4 bg-surface rounded-2xl border-2 border-transparent group-hover:border-primary/20 transition-all flex flex-col gap-3">
+<div class="w-full flex justify-between">
+<span class="material-symbols-outlined text-stone-400">stars</span>
+<span class="font-bold text-lg">$45.00</span>
+</div>
+<img class="w-32 self-end transform group-hover:scale-105 transition-transform" data-alt="Deep blue high-end sports car or luxury grand tourer, reflecting city lights on its polished surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7IqfDcp146tL-K2bh7rroepkM8zAvZh0CXMwLvbd6jgGg8ogrC-J8GwXgtWRKmnTVxpmXZdlOpnTE5VFyPH8DrGV1FyZJCD1nB08xom6g86DspetqpKNAfiYS8rgOqeZKogA6GS_G_63yGwMgxBlWjnn76aqL6jKEuBVzhaweChx7hdbpAJ3Y2LCm-EJD8x_z55md3HrRz2nSHuFPl0e3-jSTYz5_FTE0T8L7xywiroXsGdk2A6_J4uL0f5noAGJJrniDuFvFS8LE"/>
+<div class="mt-2">
+<p class="font-bold text-on-surface">Luxury</p>
+<p class="text-[11px] text-stone-500">9 min away</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Coupon & Payment -->
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-2xl group hover:bg-white transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">confirmation_number</span>
+<span class="font-semibold text-sm">KINETIC50 Applied</span>
+</div>
+<span class="text-primary font-bold text-xs">CHANGE</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-2xl group hover:bg-white transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-stone-600">account_balance_wallet</span>
+<span class="font-semibold text-sm">•••• 4242</span>
+</div>
+<span class="material-symbols-outlined text-stone-400">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="p-6 bg-white border-t border-surface-container shadow-[0_-8px_24px_rgba(0,0,0,0.02)]">
+<button class="w-full bg-primary hover:bg-primary-container text-white py-4 px-6 rounded-xl font-['Plus_Jakarta_Sans'] font-bold text-lg flex justify-between items-center transition-all scale-100 active:scale-95 shadow-lg group">
+<span>Book Kinetic Sedan</span>
+<div class="flex items-center gap-2">
+<span class="opacity-70 text-sm font-normal line-through">$22.00</span>
+<span>$18.20</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white shadow-[0_-8px_20px_rgba(0,0,0,0.04)] z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-stone-400 px-4 py-1.5 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Inter'] font-medium text-[11px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-red-50 text-red-700 rounded-xl px-4 py-1.5 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+<span class="font-['Inter'] font-medium text-[11px] mt-1">Booking</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 px-4 py-1.5 transition-all" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-['Inter'] font-medium text-[11px] mt-1">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 px-4 py-1.5 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] font-medium text-[11px] mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

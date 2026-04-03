@@ -21,6 +21,8 @@ import 'features/bookings/data/datasources/mock_admin_bookings_datasource.dart';
 import 'features/bookings/presentation/bloc/admin_bookings_bloc.dart';
 import 'features/settings/data/datasources/mock_settings_datasource.dart';
 import 'features/settings/presentation/bloc/settings_bloc.dart';
+import 'features/vehicles/data/datasources/mock_vehicles_datasource.dart';
+import 'features/vehicles/presentation/bloc/vehicles_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -63,6 +65,10 @@ Future<void> init() async {
   // Bookings
   sl.registerFactory(() => AdminBookingsBloc(dataSource: sl()));
   sl.registerLazySingleton(() => MockAdminBookingsDataSource());
+
+  // Vehicles
+  sl.registerFactory(() => VehiclesBloc(dataSource: sl()));
+  sl.registerLazySingleton(() => MockVehiclesDataSource());
 
   // Settings
   sl.registerFactory(() => SettingsBloc(dataSource: sl()));

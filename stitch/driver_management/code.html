@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velocity Admin | Driver Management</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#447a9c",
+              "surface-variant": "#dce5d9",
+              "secondary": "#485f84",
+              "surface-container-high": "#e2ebdf",
+              "background": "#f3fcf0",
+              "surface-container-highest": "#dce5d9",
+              "error-container": "#ffdad6",
+              "primary": "#b7102a",
+              "on-primary-fixed": "#410007",
+              "on-error": "#ffffff",
+              "on-primary-container": "#fffbff",
+              "on-secondary-container": "#445a7f",
+              "on-background": "#161d16",
+              "surface": "#f3fcf0",
+              "on-secondary-fixed-variant": "#30476a",
+              "on-secondary-fixed": "#001b3c",
+              "on-error-container": "#93000a",
+              "on-tertiary-container": "#fcfcff",
+              "primary-container": "#db313f",
+              "inverse-on-surface": "#eaf3e7",
+              "outline-variant": "#e4bebc",
+              "on-tertiary": "#ffffff",
+              "surface-bright": "#f3fcf0",
+              "on-primary": "#ffffff",
+              "tertiary-fixed": "#c7e7ff",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#161d16",
+              "inverse-primary": "#ffb3b1",
+              "surface-dim": "#d4ddd1",
+              "surface-container": "#e7f0e5",
+              "secondary-fixed": "#d5e3ff",
+              "inverse-surface": "#2a322b",
+              "tertiary-fixed-dim": "#98cdf2",
+              "on-surface-variant": "#5b403f",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#064c6b",
+              "outline": "#8f6f6e",
+              "on-tertiary-fixed": "#001e2e",
+              "primary-fixed": "#ffdad8",
+              "surface-container-low": "#edf6ea",
+              "on-primary-fixed-variant": "#92001c",
+              "surface-tint": "#bb152c",
+              "secondary-fixed-dim": "#b0c7f1",
+              "secondary-container": "#bbd3fd",
+              "tertiary": "#286182",
+              "primary-fixed-dim": "#ffb3b1",
+              "on-secondary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Inter', sans-serif; }
+      .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      /* Hide scrollbar but keep functionality */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Shell -->
+<header class="bg-[#f3fcf0]/70 backdrop-blur-xl fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-opacity hover:opacity-80">menu</span>
+<h1 class="text-2xl font-black italic tracking-tighter text-[#b7102a] font-jakarta">VELOCITY</h1>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-[#b7102a] font-bold font-jakarta hover:opacity-80 transition-opacity" href="#">Dashboard</a>
+<a class="text-[#485f84] font-jakarta hover:opacity-80 transition-opacity" href="#">Rides</a>
+<a class="text-[#485f84] font-jakarta hover:opacity-80 transition-opacity" href="#">Earnings</a>
+<a class="text-[#485f84] font-jakarta hover:opacity-80 transition-opacity" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-secondary uppercase tracking-widest">Administrator</p>
+<p class="text-sm font-jakarta font-bold">Admin Portal</p>
+</div>
+<span class="material-symbols-outlined text-3xl text-secondary">account_circle</span>
+</div>
+</header>
+<main class="pt-24 pb-12 px-6 max-w-[1600px] mx-auto min-h-screen flex flex-col lg:flex-row gap-8">
+<!-- Sidebar: Verification Queue -->
+<aside class="w-full lg:w-80 flex flex-col gap-6 shrink-0">
+<section class="bg-surface-container rounded-2xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-jakarta font-extrabold text-xl tracking-tight text-on-surface">Verification Queue</h2>
+<span class="bg-primary text-white text-[10px] px-2 py-1 rounded-full font-black">12 NEW</span>
+</div>
+<div class="space-y-4">
+<!-- Queue Item -->
+<div class="bg-surface-container-lowest p-4 rounded-xl hover:translate-x-1 transition-transform duration-300 cursor-pointer group">
+<div class="flex items-start gap-3">
+<img alt="Driver Profile" class="w-10 h-10 rounded-lg object-cover" data-alt="professional portrait of a young male driver with a friendly expression in front of a neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOy1nj6RYKpxagW7WSRdNLZIAyRN6kkb8tiL2B8ioC1RJH-WmYlCSitiCKd6lzNZD-NbUP9P4SqTkwVez8GiQ6kVc6zcgl2c2PNEuvjtdfOTz6VIHP3PxjBbjOou89p3pqWU4wVTtLL9LEBy9L_rJnYmTHtyX5B2U2fU9Z4JLkucuhqkCkOp7dEx5nQoYQY7Dsm528CeDuJJ3xN-1CLDAoU3g3iAlhsAgE0vG6wh88aUmCmWQ5ZVJfzGEIoOkNyjl6TmiCzd9jf3gh"/>
+<div class="flex-1">
+<p class="text-sm font-bold font-jakarta">Carlos Mendez</p>
+<p class="text-[11px] text-secondary font-medium">Honda Civic • Pending Documents</p>
+</div>
+<span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl hover:translate-x-1 transition-transform duration-300 cursor-pointer group">
+<div class="flex items-start gap-3">
+<img alt="Driver Profile" class="w-10 h-10 rounded-lg object-cover" data-alt="headshot of a middle-aged woman driver with short hair, smiling confidently, bright outdoor natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCunb-cFhpAPWZGgS5Qkyo0kwMqxG1JqPKKs4pZy6nKCHErVuUAFG50CSaeh0J27cGNCqEOnf0iatKXbDjdEaUVQx-IiFa6cXX6Oz2ENYlnY7oDD471eEepJ-9jTyi3fjKxbsOliiXTGKA-XCDDtTaHh2cP7iDIgsZAX6ehp7RmIO6DMnGAs_0hJbr9x5YpyLBwumHlj4Ukp2LuBXtiHCY3pU9N9llYWvCnugRq9Zb9emdekFQLorI4BjMhOCfp9SqD-AsjXaNU21X0"/>
+<div class="flex-1">
+<p class="text-sm font-bold font-jakarta">Sarah Jenkins</p>
+<p class="text-[11px] text-secondary font-medium">Tesla Model 3 • ID Verification</p>
+</div>
+<span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl hover:translate-x-1 transition-transform duration-300 cursor-pointer group">
+<div class="flex items-start gap-3">
+<img alt="Driver Profile" class="w-10 h-10 rounded-lg object-cover" data-alt="portrait of a man with a beard wearing a polo shirt, looking professional, soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf9X9VeNiCqxlnNAXSSiE1cmeSqAtCdyGRVKoUGgk925_ynJMSl7-6p2hA7N1BQr5k1IqaiTiPFdyVu0iJX4l_Vu8BDg6Huy4A02K0s6r8mr9dX7ggZR6RXOTlIHeaR1E5PBuKR4mihHP47IGJn8SRPgjISaIbjaHZpB33JdkUsgNDlhqUH31C6X1u9ZZ08LrlJTF1CfgqRcpTqauVYTsnk1Ztt64CrgvX11OQ9h2l1u8T5ZTIPjXdRqkS_I0XrnGwYn8tyjnvXtQu"/>
+<div class="flex-1">
+<p class="text-sm font-bold font-jakarta">David Wu</p>
+<p class="text-[11px] text-secondary font-medium">Toyota Camry • Background Check</p>
+</div>
+<span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 text-xs font-black uppercase tracking-widest text-primary border-2 border-primary/20 rounded-xl hover:bg-primary hover:text-white transition-all active:scale-95">
+                    View All Pending
+                </button>
+</section>
+<!-- Stats Mini-Cards -->
+<div class="grid grid-cols-1 gap-4">
+<div class="bg-primary p-6 rounded-2xl text-white overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Total Active</p>
+<h3 class="text-4xl font-black font-jakarta mt-1">1,284</h3>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-10 rotate-12">directions_car</span>
+</div>
+</div>
+</aside>
+<!-- Main Content: Driver Management Table -->
+<div class="flex-1 space-y-8">
+<!-- Header & Search -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-5xl font-jakarta font-black tracking-tighter text-on-surface">Drivers</h2>
+<p class="text-secondary mt-2 font-medium">Manage and monitor your fleet's active workforce.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-3">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors">search</span>
+<input class="pl-12 pr-6 py-3 w-full sm:w-80 bg-surface-container-high border-none rounded-full focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all text-sm font-medium" placeholder="Search name, license or plate..." type="text"/>
+</div>
+<button class="bg-secondary text-white px-6 py-3 rounded-full flex items-center justify-center gap-2 font-bold text-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filters
+                    </button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-surface-container-low rounded-[2rem] overflow-hidden shadow-sm">
+<div class="overflow-x-auto no-scrollbar">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container-high/50">
+<th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-secondary">Driver Details</th>
+<th class="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-secondary">Vehicle</th>
+<th class="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-secondary">Status</th>
+<th class="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-secondary">Rating</th>
+<th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-secondary text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Table Row 1 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container overflow-hidden shrink-0">
+<img alt="Driver" class="w-full h-full object-cover" data-alt="close-up portrait of a smiling driver in his 30s, natural daylight, looking directly at camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLh5Gthu32cKyJ8lI5zy8CVYUIiHhNRlfk3ar8hSkXn3FJT37cBrg9rs6I5XzQV4AbULox9rhDieYlOjkLghdpt-D-c14RWwnaBwVdC8GhsnDxwyedrjv1RHPPslYVARQuyjdXbJ73XRNMPB6lNzkrw-dsBjJ2a1Jo2NPYScZ7KSEkR4Jtv8-L2rEr1-HgeGzZFCC0XsjzPMWkx0AsYxJ-DplE73UXN0GqWGoGFeVmzAoxIrusrpsWjKssyK9aSROCeYfQH-2lzJqU"/>
+</div>
+<div>
+<p class="font-jakarta font-extrabold text-on-surface">Marcus Speed</p>
+<p class="text-xs text-secondary font-medium">ID: VEL-99281</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-bold font-jakarta">Mercedes-Benz S-Class</p>
+<p class="text-[11px] text-secondary font-mono tracking-wider">ABC-1234</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        Online
+                                    </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-amber-400 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold font-jakarta">4.98</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-error hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined text-lg">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Table Row 2 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container overflow-hidden shrink-0">
+<img alt="Driver" class="w-full h-full object-cover" data-alt="portrait of an older male driver with glasses, wearing a sharp uniform, blurred urban background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_Ab0lI-88KFUO6EkyBXmKtYx3nttDChjyrS6n8xm3PI3TBr5wV2chrrsXdcF_QOM4BhAkHozz-R6HgH9SseVLVLghCswxHqnlJ8jBVamhY72jB942fREQsEMINv7DnPCp-Q2ih3wcfM-Szm9Q0zD7kvJWbQoiKnQa29U9cU26CexEubbGS0Mk8RP8dJ_OSHYDP_u-YoEvJW9RoUvFXEcW4Khv-sc8dheqULxusSDxq0tmqz95Yn7NLdwKYrFabTDAJ1M242mqkShz"/>
+</div>
+<div>
+<p class="font-jakarta font-extrabold text-on-surface">Elena Rodriguez</p>
+<p class="text-xs text-secondary font-medium">ID: VEL-77210</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-bold font-jakarta">Lexus RX 450h</p>
+<p class="text-[11px] text-secondary font-mono tracking-wider">XYZ-9876</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary text-[10px] font-black uppercase">
+                                        Offline
+                                    </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-amber-400 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold font-jakarta">4.85</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-error hover:text-white transition-all active:scale-90">
+<span class="material-symbols-outlined text-lg">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Table Row 3 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container overflow-hidden shrink-0">
+<img alt="Driver" class="w-full h-full object-cover" data-alt="professional woman driver sitting in car, sunset light reflecting on windows, high-end editorial feel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQLXH7uPCzX19CEY9QERxSmzZ1g1INcDc1Dz6LBcfB5zop-eKuzbFg99PSzQZVMdPNscS-0FwfYgzpG9Aqvssjp1MY73VK9lKj3v-azA05NrE9wM5vwzK4Y5tqixJemeSrCKdgzjQ-YZnSvosGLA9Bvx9L8y3IWeSGEawxG-WljLG39ruglIAC9Wf6PagK3c5XmuSacp35rbj25XbehwUF9gXkc86CzpEpAFZ8N6srelK1C-d5jk0exzJnyUVSBXYnY-QUrPVwGH4G"/>
+</div>
+<div>
+<p class="font-jakarta font-extrabold text-on-surface">Jordan Blake</p>
+<p class="text-xs text-secondary font-medium">ID: VEL-10443</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-bold font-jakarta">Audi A8 L</p>
+<p class="text-[11px] text-secondary font-mono tracking-wider"> LUX-0012</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-primary text-[10px] font-black uppercase">
+                                        Pending
+                                    </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-surface-variant text-sm">star</span>
+<span class="text-sm font-bold font-jakarta">NEW</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all">
+                                            Verify Now
+                                        </button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-8 py-6 bg-surface-container-high/30 flex items-center justify-between border-t border-surface-container">
+<p class="text-xs font-bold text-secondary uppercase tracking-widest">Showing 1-10 of 1,284 Drivers</p>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center text-secondary hover:bg-primary hover:text-white transition-all disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg">
+<span class="text-xs font-black">1</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center text-secondary hover:bg-primary hover:text-white transition-all">
+<span class="text-xs font-black">2</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center text-secondary hover:bg-primary hover:text-white transition-all">
+<span class="text-xs font-black">3</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center text-secondary hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation Drawer (Desktop hidden by design, Mobile trigger) -->
+<div class="fixed inset-0 bg-on-background/20 backdrop-blur-sm z-[100] opacity-0 pointer-events-none transition-opacity lg:hidden" id="drawer">
+<div class="absolute left-0 top-0 h-full w-80 bg-[#f3fcf0] shadow-2xl flex flex-col p-8 gap-4 -translate-x-full transition-transform">
+<div class="flex items-center gap-4 mb-8">
+<img alt="Admin" class="w-12 h-12 rounded-full ring-2 ring-primary ring-offset-2" data-alt="professional studio portrait of a woman in a business suit with a friendly and authoritative look, clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO_8OuMMWYVq9vswtWIczO-ueH1qmlbEiaK5VCjxCHts3sStjFYERj8TZP3XEjGjI_Go67oJcz3K8_8T-HcIO3nrw-zqlYVY6PZRXQrWSZSHYMY0IA1ZZT0ymTKscSpQY7BU_MTHIUjv_ZKek3cdC0ImEM0ufxxpgs1XkKl12LGoBUdDgzwhLfBu2lXrIBjKHFqf5VvfSAFlTFwN9KaTar6iMbGAIhErCcNYGKViNXDLyWJ3GrMTapZgLAay9NrQCHU9Aoawt_R78z"/>
+<div>
+<h3 class="font-jakarta font-bold text-on-surface">Marcus Speed</h3>
+<p class="text-xs text-secondary font-medium uppercase tracking-tighter">Gold Tier Driver</p>
+<p class="text-[10px] text-primary font-black">4.98 Rating</p>
+</div>
+</div>
+<div class="space-y-2">
+<a class="flex items-center gap-3 p-4 rounded-lg bg-[#b7102a] text-white font-jakarta font-bold" href="#">
+<span class="material-symbols-outlined">sensors</span>
+                    Status: Online
+                </a>
+<a class="flex items-center gap-3 p-4 rounded-lg text-[#485f84] hover:bg-[#e7f0e5] font-jakarta font-bold transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined">history</span>
+                    Ride History
+                </a>
+<a class="flex items-center gap-3 p-4 rounded-lg text-[#485f84] hover:bg-[#e7f0e5] font-jakarta font-bold transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined">description</span>
+                    Document Center
+                </a>
+<a class="flex items-center gap-3 p-4 rounded-lg text-[#485f84] hover:bg-[#e7f0e5] font-jakarta font-bold transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined">help</span>
+                    Help Support
+                </a>
+<hr class="border-surface-container my-4"/>
+<a class="flex items-center gap-3 p-4 rounded-lg text-primary hover:bg-primary-fixed font-jakarta font-bold transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</div>
+</body></html>
